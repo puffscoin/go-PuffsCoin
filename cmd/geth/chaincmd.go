@@ -1,18 +1,18 @@
-// Copyright 2015 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2019 The go-puffscoin Authors
+// This file is part of go-puffscoin.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// go-puffscoin is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// go-puffscoin is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with go-puffscoin. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -25,16 +25,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/puffscoin/go-puffscoin/cmd/utils"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/console"
+	"github.com/puffscoin/go-puffscoin/core"
+	"github.com/puffscoin/go-puffscoin/core/rawdb"
+	"github.com/puffscoin/go-puffscoin/core/state"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/eth/downloader"
+	"github.com/puffscoin/go-puffscoin/event"
+	"github.com/puffscoin/go-puffscoin/log"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -164,7 +164,7 @@ Remove blockchain and state databases`,
 		Category: "BLOCKCHAIN COMMANDS",
 		Description: `
 The arguments are interpreted as block numbers or hashes.
-Use "ethereum dump 0" to dump the genesis block.`,
+Use "puffscoin dump 0" to dump the genesis block.`,
 	}
 )
 
