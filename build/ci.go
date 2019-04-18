@@ -1,4 +1,4 @@
-// Copyright 2016 The go-ethereum Authors
+// Copyright 2019 The go-puffscoin Authors
 // This file is part of the go-ethereum library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
@@ -58,9 +58,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/go-ethereum/internal/build"
-	"github.com/ethereum/go-ethereum/params"
-	sv "github.com/ethereum/go-ethereum/swarm/version"
+	"github.com/puffscoin/go-puffscoin/internal/build"
+	"github.com/puffscoin/go-puffscoin/params"
+	sv "github.com/puffscoin/go-puffscoin/swarm/version"
 )
 
 var (
@@ -93,7 +93,7 @@ var (
 	debExecutables = []debExecutable{
 		{
 			BinaryName:  "abigen",
-			Description: "Source code generator to convert Ethereum contract definitions into easy to use, compile-time type-safe Go packages.",
+			Description: "Source code generator to convert puffscoin contract definitions into easy to use, compile-time type-safe Go packages.",
 		},
 		{
 			BinaryName:  "bootnode",
@@ -104,12 +104,12 @@ var (
 			Description: "Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
 		},
 		{
-			BinaryName:  "geth",
-			Description: "Ethereum CLI client.",
+			BinaryName:  "gpuffs",
+			Description: "puffscoin CLI client.",
 		},
 		{
 			BinaryName:  "puppeth",
-			Description: "Ethereum private network manager.",
+			Description: "puffscoin private network manager.",
 		},
 		{
 			BinaryName:  "rlpdump",
@@ -117,11 +117,11 @@ var (
 		},
 		{
 			BinaryName:  "wnode",
-			Description: "Ethereum Whisper diagnostic tool",
+			Description: "puffscoin Whisper diagnostic tool",
 		},
 		{
 			BinaryName:  "clef",
-			Description: "Ethereum account management tool.",
+			Description: "puffscoin account management tool.",
 		},
 	}
 
@@ -130,7 +130,7 @@ var (
 		{
 			BinaryName:  "swarm",
 			PackageName: "ethereum-swarm",
-			Description: "Ethereum Swarm daemon and tools",
+			Description: "puffscoin Swarm daemon and tools",
 		},
 	}
 
@@ -227,7 +227,7 @@ func doInstall(cmdline []string) {
 
 		if minor < 9 {
 			log.Println("You have Go version", runtime.Version())
-			log.Println("go-ethereum requires at least Go version 1.9 and cannot")
+			log.Println("go-puffscoin requires at least Go version 1.9 and cannot")
 			log.Println("be compiled with an earlier version. Please upgrade your Go installation.")
 			os.Exit(1)
 		}
