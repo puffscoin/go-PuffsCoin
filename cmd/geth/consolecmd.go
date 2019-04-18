@@ -1,18 +1,18 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2019 The go-puffscoin Authors
+// This file is part of go-puffscoin.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// go-puffscoin is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// go-puffscoin is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with go-puffscoin. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -24,10 +24,10 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/puffscoin/go-puffscoin/cmd/utils"
+	"github.com/puffscoin/go-puffscoin/console"
+	"github.com/puffscoin/go-puffscoin/node"
+	"github.com/puffscoin/go-puffscoin/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -41,9 +41,9 @@ var (
 		Flags:    append(append(append(nodeFlags, rpcFlags...), consoleFlags...), whisperFlags...),
 		Category: "CONSOLE COMMANDS",
 		Description: `
-The Geth console is an interactive shell for the JavaScript runtime environment
+The gpuffs console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.`,
+See http://puffscoin.leafycauldronapothecary.com/javascript-console/.`,
 	}
 
 	attachCommand = cli.Command{
@@ -56,7 +56,7 @@ See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.`,
 		Description: `
 The Geth console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.
+See http://puffscoin.leafycauldronapothecary.com/javascript-console/.
 This command allows to open a console on a running geth node.`,
 	}
 
@@ -69,7 +69,7 @@ This command allows to open a console on a running geth node.`,
 		Category:  "CONSOLE COMMANDS",
 		Description: `
 The JavaScript VM exposes a node admin interface as well as the Ðapp
-JavaScript API. See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console`,
+JavaScript API. See http://puffscoin.leafycauldronapothecary.com/javascript-console/`,
 	}
 )
 
@@ -111,10 +111,10 @@ func localConsole(ctx *cli.Context) error {
 	return nil
 }
 
-// remoteConsole will connect to a remote geth instance, attaching a JavaScript
+// remoteConsole will connect to a remote gpuffs instance, attaching a JavaScript
 // console to it.
 func remoteConsole(ctx *cli.Context) error {
-	// Attach to a remotely running geth instance and start the JavaScript console
+	// Attach to a remotely running gpuffs instance and start the JavaScript console
 	endpoint := ctx.Args().First()
 	if endpoint == "" {
 		path := node.DefaultDataDir()
@@ -132,7 +132,7 @@ func remoteConsole(ctx *cli.Context) error {
 	}
 	client, err := dialRPC(endpoint)
 	if err != nil {
-		utils.Fatalf("Unable to attach to remote geth: %v", err)
+		utils.Fatalf("Unable to attach to remote gpuffs: %v", err)
 	}
 	config := console.Config{
 		DataDir: utils.MakeDataDir(ctx),
@@ -161,7 +161,7 @@ func remoteConsole(ctx *cli.Context) error {
 
 // dialRPC returns a RPC client which connects to the given endpoint.
 // The check for empty endpoint implements the defaulting logic
-// for "geth attach" and "geth monitor" with no argument.
+// for "gpuffs attach" and "gpuffs monitor" with no argument.
 func dialRPC(endpoint string) (*rpc.Client, error) {
 	if endpoint == "" {
 		endpoint = node.DefaultIPCEndpoint(clientIdentifier)
@@ -173,7 +173,7 @@ func dialRPC(endpoint string) (*rpc.Client, error) {
 	return rpc.Dial(endpoint)
 }
 
-// ephemeralConsole starts a new geth node, attaches an ephemeral JavaScript
+// ephemeralConsole starts a new gpuffs node, attaches an ephemeral JavaScript
 // console to it, executes each of the files specified as arguments and tears
 // everything down.
 func ephemeralConsole(ctx *cli.Context) error {
@@ -185,7 +185,7 @@ func ephemeralConsole(ctx *cli.Context) error {
 	// Attach to the newly started node and start the JavaScript console
 	client, err := node.Attach()
 	if err != nil {
-		utils.Fatalf("Failed to attach to the inproc geth: %v", err)
+		utils.Fatalf("Failed to attach to the inproc gpuffs: %v", err)
 	}
 	config := console.Config{
 		DataDir: utils.MakeDataDir(ctx),
