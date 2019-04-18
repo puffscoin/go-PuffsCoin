@@ -22,7 +22,7 @@
 
   At the end of this process, you will be provided with a PIN, a PUK and a pairing password. Write them down, you'll need them shortly.
 
-  Start `geth` with the `console` command. You will notice the following warning:
+  Start `gpuffs` with the `console` command. You will notice the following warning:
 
   ```
   WARN [04-09|16:58:38.898] Failed to open wallet                    url=pcsc://044def09                          err="smartcard: pairing password needed"
@@ -78,7 +78,7 @@
 
 ## Usage
 
-  1. Start `geth` with the `console` command
+  1. Start `gpuffs` with the `console` command
   2. Check the card's URL by checking `personal.listWallets`:
 
 ```
@@ -98,5 +98,5 @@ personal.openWallet("pcsc://a4d73015")
 
 ## Known issues
 
-  * Starting geth with a valid card seems to make firefox crash.
+  * Starting gpuffs with a valid card seems to make firefox crash.
   * PCSC version 4.4 should work, but is currently untested
