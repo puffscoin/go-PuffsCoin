@@ -1,18 +1,18 @@
-// Copyright 2017 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2019 The go-puffscoin Authors
+// This file is part of go-puffscoin.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// go-puffscoin is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// go-puffscoin is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with go-puffscoin. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -26,7 +26,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/puffscoin/go-puffscoin/log"
 )
 
 // dashboardContent is the actual dashboard HTML content to serve up when users
@@ -41,7 +41,7 @@ var dashboardContent = `
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{.NetworkTitle}}: Ethereum Testnet</title>
+		<title>{{.NetworkTitle}}: puffscoin Testnet</title>
 
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -84,10 +84,10 @@ var dashboardContent = `
 									{{if .FaucetPage}}<li id="faucet_menu"><a onclick="load('#faucet')"><i class="fa fa-bath"></i> Crypto Faucet</a></li>{{end}}
 									<li id="connect_menu"><a><i class="fa fa-plug"></i> Connect Yourself</a>
 										<ul id="connect_list" class="nav child_menu">
-											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#geth')">Go Ethereum: Geth</a></li>
-											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#mist')">Go Ethereum: Wallet & Mist</a></li>
-											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#mobile')">Go Ethereum: Android & iOS</a></li>{{if .Ethash}}
-											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#other')">Other Ethereum Clients</a></li>{{end}}
+											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#geth')">Go puffscoin: gpuffs</a></li>
+											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#mist')">Go puffscoin: Wallet & Mist</a></li>
+											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#mobile')">Go puffscoin: Android & iOS</a></li>{{if .Ethash}}
+											<li><a onclick="$('#connect_menu').removeClass('active'); $('#connect_list').toggle(); load('#other')">Other puffscoin Clients</a></li>{{end}}
 										</ul>
 									</li>
 									<li id="about_menu"><a onclick="load('#about')"><i class="fa fa-heartbeat"></i> About Puppeth</a></li>
@@ -100,7 +100,7 @@ var dashboardContent = `
 					<div id="geth" hidden style="padding: 16px;">
 						<div class="page-title">
 							<div class="title_left">
-								<h3>Connect Yourself &ndash; Go Ethereum: Geth</h3>
+								<h3>Connect Yourself &ndash; Go puffscoin: Geth</h3>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -201,17 +201,17 @@ var dashboardContent = `
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<p>The Ethereum Wallet is an <a href="https://electron.atom.io/" target="about:blank">Electron</a> based desktop application to manage your Ethereum accounts and funds. Beside the usual account life-cycle operations you would expect to perform, the wallet also provides a means to send transactions from your accounts and to interact with smart contracts deployed on the network.</p>
-										<p>Under the hood the wallet is backed by a go-ethereum full node, meaning that a mid range machine is assumed. Similarly, synchronization is based on <strong>fast-sync</strong>, which will download all blockchain data from the network and make it available to the wallet. Light nodes cannot currently fully back the wallet, but it's a target actively pursued.</p>
+										<p>The puffscoin Wallet is an <a href="https://electron.atom.io/" target="about:blank">Electron</a> based desktop application to manage your puffscoin accounts and funds. Beside the usual account life-cycle operations you would expect to perform, the wallet also provides a means to send transactions from your accounts and to interact with smart contracts deployed on the network.</p>
+										<p>Under the hood the wallet is backed by a go-puffscoin full node, meaning that a mid range machine is assumed. Similarly, synchronization is based on <strong>fast-sync</strong>, which will download all blockchain data from the network and make it available to the wallet. Light nodes cannot currently fully back the wallet, but it's a target actively pursued.</p>
 										<br/>
-										<p>To connect with the Ethereum Wallet, you'll need to initialize your private network first via Geth as the wallet does not currently support calling Geth directly. To initialize your local chain, download <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> and run:
+										<p>To connect with the puffscoin Wallet, you'll need to initialize your private network first via Geth as the wallet does not currently support calling Geth directly. To initialize your local chain, download <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> and run:
 											<pre>geth --datadir=$HOME/.{{.Network}} init {{.GethGenesis}}</pre>
 										</p>
 										<p>With your local chain initialized, you can start the Ethereum Wallet:
 											<pre>ethereumwallet --rpc $HOME/.{{.Network}}/geth.ipc --node-networkid={{.NetworkID}} --node-datadir=$HOME/.{{.Network}}{{if .Ethstats}} --node-ethstats='{{.Ethstats}}'{{end}} --node-bootnodes={{.BootnodesFlat}}</pre>
 										<p>
 										<br/>
-										<p>You can download the Ethereum Wallet from <a href="https://github.com/ethereum/mist/releases" target="about:blank">https://github.com/ethereum/mist/releases</a>.</p>
+										<p>You can download the puffscoin Wallet from <a href="https://github.com/puffscoin/mist/releases" target="about:blank">https://github.com/puffscoin/mist/releases</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -222,8 +222,8 @@ var dashboardContent = `
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<p>The Mist browser is an <a href="https://electron.atom.io/" target="about:blank">Electron</a> based desktop application to load and interact with Ethereum enabled third party web DApps. Beside all the functionality provided by the Ethereum Wallet, Mist is an extended web-browser where loaded pages have access to the Ethereum network via a web3.js provider, and may also interact with users' own accounts (given proper authorization and confirmation of course).</p>
-										<p>Under the hood the browser is backed by a go-ethereum full node, meaning that a mid range machine is assumed. Similarly, synchronization is based on <strong>fast-sync</strong>, which will download all blockchain data from the network and make it available to the wallet. Light nodes cannot currently fully back the wallet, but it's a target actively pursued.</p>
+										<p>The Mist browser is an <a href="https://electron.atom.io/" target="about:blank">Electron</a> based desktop application to load and interact with puffscoin enabled third party web DApps. Beside all the functionality provided by the puffscoin Wallet, Mist is an extended web-browser where loaded pages have access to the puffscoin network via a web3.js provider, and may also interact with users' own accounts (given proper authorization and confirmation of course).</p>
+										<p>Under the hood the browser is backed by a go-puffscoin full node, meaning that a mid range machine is assumed. Similarly, synchronization is based on <strong>fast-sync</strong>, which will download all blockchain data from the network and make it available to the wallet. Light nodes cannot currently fully back the wallet, but it's a target actively pursued.</p>
 										<br/>
 										<p>To connect with the Mist browser, you'll need to initialize your private network first via Geth as Mist does not currently support calling Geth directly. To initialize your local chain, download <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> and run:
 											<pre>geth --datadir=$HOME/.{{.Network}} init {{.GethGenesis}}</pre>
@@ -232,7 +232,7 @@ var dashboardContent = `
 											<pre>mist --rpc $HOME/.{{.Network}}/geth.ipc --node-networkid={{.NetworkID}} --node-datadir=$HOME/.{{.Network}}{{if .Ethstats}} --node-ethstats='{{.Ethstats}}'{{end}} --node-bootnodes={{.BootnodesFlat}}</pre>
 										<p>
 										<br/>
-										<p>You can download the Mist browser from <a href="https://github.com/ethereum/mist/releases" target="about:blank">https://github.com/ethereum/mist/releases</a>.</p>
+										<p>You can download the Mist browser from <a href="https://github.com/puffscoin/mist/releases" target="about:blank">https://github.com/puffscoin/mist/releases</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -241,7 +241,7 @@ var dashboardContent = `
 					<div id="mobile" hidden style="padding: 16px;">
 						<div class="page-title">
 							<div class="title_left">
-								<h3>Connect Yourself &ndash; Go Ethereum: Android &amp; iOS</h3>
+								<h3>Connect Yourself &ndash; Go puffscoin: Android &amp; iOS</h3>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -249,16 +249,16 @@ var dashboardContent = `
 							<div class="col-md-6">
 								<div class="x_panel">
 									<div class="x_title">
-										<h2><i class="fa fa-android" aria-hidden="true"></i> Android devices <small>Accesses Ethereum via Java</small></h2>
+										<h2><i class="fa fa-android" aria-hidden="true"></i> Android devices <small>Accesses puffscoin via Java</small></h2>
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<p>Starting with the 1.5 release of go-ethereum, we've transitioned away from shipping only full blown Ethereum clients and started focusing on releasing the code as reusable packages initially for Go projects, then later for Java based Android projects too. Mobile support is still evolving, hence is bound to change often and hard, but the Ethereum network can nonetheless be accessed from Android too.</p>
+										<p>Starting with the 1.5 release of go-puffscoin, we've transitioned away from shipping only full blown puffscoin clients and started focusing on releasing the code as reusable packages initially for Go projects, then later for Java based Android projects too. Mobile support is still evolving, hence is bound to change often and hard, but the Ethereum network can nonetheless be accessed from Android too.</p>
 										<p>Under the hood the Android library is backed by a go-ethereum light node, meaning that given a not-too-old Android device, you should be able to join the network without significant issues. Certain functionality is not yet available and rough edges are bound to appear here and there, please report issues if you find any.</p>
 										<br/>
 										<p>The stable Android archives are distributed via Maven Central, and the develop snapshots via the Sonatype repositories. Before proceeding, please ensure you have a recent version configured in your Android project. You can find details in <a href="https://github.com/ethereum/go-ethereum/wiki/Mobile:-Introduction#android-archive" target="about:blank">Mobile: Introduction &ndash; Android archive</a>.
-										<p>Before connecting to the Ethereum network, download the <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> genesis json file and either store it in your Android project as a resource file you can access, or save it as a string in a variable. You're going to need to to initialize your client.</p>
-										<p>Inside your Java code you can now import the geth archive and connect to Ethereum:
+										<p>Before connecting to the puffscoin network, download the <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> genesis json file and either store it in your Android project as a resource file you can access, or save it as a string in a variable. You're going to need to to initialize your client.</p>
+										<p>Inside your Java code you can now import the geth archive and connect to puffscoin:
 											<pre>import org.ethereum.geth.*;</pre>
 <pre>
 Enodes bootnodes = new Enodes();{{range .Bootnodes}}
@@ -284,12 +284,12 @@ node.start();
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<p>Starting with the 1.5 release of go-ethereum, we've transitioned away from shipping only full blown Ethereum clients and started focusing on releasing the code as reusable packages initially for Go projects, then later for ObjC/Swift based iOS projects too. Mobile support is still evolving, hence is bound to change often and hard, but the Ethereum network can nonetheless be accessed from iOS too.</p>
+										<p>Starting with the 1.5 release of go-puffscoin, we've transitioned away from shipping only full blown puffscoin clients and started focusing on releasing the code as reusable packages initially for Go projects, then later for ObjC/Swift based iOS projects too. Mobile support is still evolving, hence is bound to change often and hard, but the puffscoin network can nonetheless be accessed from iOS too.</p>
 										<p>Under the hood the iOS library is backed by a go-ethereum light node, meaning that given a not-too-old Apple device, you should be able to join the network without significant issues. Certain functionality is not yet available and rough edges are bound to appear here and there, please report issues if you find any.</p>
 										<br/>
 										<p>Both stable and develop builds of the iOS framework are available via CocoaPods. Before proceeding, please ensure you have a recent version configured in your iOS project. You can find details in <a href="https://github.com/ethereum/go-ethereum/wiki/Mobile:-Introduction#ios-framework" target="about:blank">Mobile: Introduction &ndash; iOS framework</a>.
-										<p>Before connecting to the Ethereum network, download the <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> genesis json file and either store it in your iOS project as a resource file you can access, or save it as a string in a variable. You're going to need to to initialize your client.</p>
-										<p>Inside your Swift code you can now import the geth framework and connect to Ethereum (ObjC should be analogous):
+										<p>Before connecting to the puffscoin network, download the <a href="/{{.GethGenesis}}"><code>{{.GethGenesis}}</code></a> genesis json file and either store it in your iOS project as a resource file you can access, or save it as a string in a variable. You're going to need to to initialize your client.</p>
+										<p>Inside your Swift code you can now import the geth framework and connect to puffscoin (ObjC should be analogous):
 											<pre>import Geth</pre>
 <pre>
 var error: NSError?
@@ -316,7 +316,7 @@ try! node?.start();
 					<div id="other" hidden style="padding: 16px;">
 						<div class="page-title">
 							<div class="title_left">
-								<h3>Connect Yourself &ndash; Other Ethereum Clients</h3>
+								<h3>Connect Yourself &ndash; Other puffscoin Clients</h3>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -326,18 +326,18 @@ try! node?.start();
 									<div class="x_title">
 										<h2>
 											<svg height="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115"><path fill="#5C8DBC" d="M9.7 83.3V35.5s0-3.4 3.3-5.2c3.3-1.8 39.6-23.5 39.6-23.5s4.6-3.1 9.4 0c0 0 43.1 23.9 42.4 25.3L85.3 43.3s-3.6-8.4-13.1-13c-11.3-5.5-29.7-6.2-42.9 13.3 0 0-8.6 13.5.3 31.6l-19 10.7s-.9-.6-.9-2.6z"/><path fill="#5C8DBC" d="M71 51.3c-2.8-4.7-7.9-7.9-13.8-7.9-8.8 0-16 7.2-16 16 0 2.8.7 5.4 2 7.7L71 51.3z"/><path fill="#194674" d="M43.1 67c2.8 4.7 7.9 7.9 13.8 7.9 8.8 0 16-7.2 16-16 0-2.8-.7-5.4-2-7.7L43.1 67z"/><path fill="#1B598E" d="M104.4 32.1s1.3 52.6-.3 53.6L58 58.6l46.4-26.5z"/><path fill="#FFF" d="M90 57h-3.9v-4.1h-4.2V57h-4v4.1h4V65h4.2v-3.9H90zm13.6 0h-3.9v-4.1h-4.2V57h-4v4.1h4V65h4.2v-3.9h3.9z"/><path fill="#194674" d="M29.5 75.1s9.2 17 28.5 16.1 27.3-16.6 27.3-16.6L104 85.4s4.1.8-41.6 25.7c0 0-4.9 3.3-10.2 0 0 0-41.3-23.1-41.6-25.3l18.9-10.7z"/></svg>
-											C++ Ethereum <small>Official C++ client from the Ethereum Foundation</small>
+											C++ puffscoin <small>Official C++ client from the Ethereum Foundation</small>
 										</h2>
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<p>C++ Ethereum is the third most popular of the Ethereum clients, focusing on code portability to a broad range of operating systems and hardware. The client is currently a full node with transaction processing based synchronization.</p>
+										<p>C++ puffscoin is the third most popular of the puffscoin clients, focusing on code portability to a broad range of operating systems and hardware. The client is currently a full node with transaction processing based synchronization.</p>
 										<br/>
-										<p>To run a cpp-ethereum node, download <a href="/{{.CppGenesis}}"><code>{{.CppGenesis}}</code></a> and start the node with:
+										<p>To run a cpp-puffscoin node, download <a href="/{{.CppGenesis}}"><code>{{.CppGenesis}}</code></a> and start the node with:
 											<pre>eth --config {{.CppGenesis}} --datadir $HOME/.{{.Network}} --peerset "{{.CppBootnodes}}"</pre>
 										</p>
 										<br/>
-										<p>You can find cpp-ethereum at <a href="https://github.com/ethereum/cpp-ethereum/" target="about:blank">https://github.com/ethereum/cpp-ethereum/</a>.</p>
+										<p>You can find cpp-puffscoin at <a href="https://github.com/puffscoin/cpp-puffscoin/" target="about:blank">https://github.com/ethereum/cpp-ethereum/</a>.</p>
 									</div>
 								</div>
 							</div>
