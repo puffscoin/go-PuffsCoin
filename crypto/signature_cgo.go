@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -23,8 +23,8 @@ import (
 	"crypto/elliptic"
 	"fmt"
 
-	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/ethereum/go-ethereum/crypto/secp256k1"
+	"github.com/puffscoin/go-puffscoin/common/math"
+	"github.com/puffscoin/go-puffscoin/crypto/secp256k1"
 )
 
 // Ecrecover returns the uncompressed public key that created the given signature.
