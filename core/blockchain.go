@@ -1,5 +1,5 @@
 // Copyright 2014 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -27,21 +27,21 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/mclock"
-	"github.com/ethereum/go-ethereum/common/prque"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/trie"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/common/mclock"
+	"github.com/puffscoin/go-puffscoin/common/prque"
+	"github.com/puffscoin/go-puffscoin/consensus"
+	"github.com/puffscoin/go-puffscoin/core/rawdb"
+	"github.com/puffscoin/go-puffscoin/core/state"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/core/vm"
+	"github.com/puffscoin/go-puffscoin/ethdb"
+	"github.com/puffscoin/go-puffscoin/event"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/params"
+	"github.com/puffscoin/go-puffscoin/rlp"
+	"github.com/puffscoin/go-puffscoin/trie"
 	"github.com/hashicorp/golang-lru"
 )
 
