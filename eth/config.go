@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -24,13 +24,13 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/common/hexutil"
+	"github.com/puffscoin/go-puffscoin/consensus/ethash"
+	"github.com/puffscoin/go-puffscoin/core"
+	"github.com/puffscoin/go-puffscoin/eth/downloader"
+	"github.com/puffscoin/go-puffscoin/eth/gasprice"
+	"github.com/puffscoin/go-puffscoin/params"
 )
 
 // DefaultConfig contains default settings for use on the Ethereum main net.
@@ -43,7 +43,7 @@ var DefaultConfig = Config{
 		DatasetsInMem:  1,
 		DatasetsOnDisk: 2,
 	},
-	NetworkId:      1,
+	NetworkId:      420,
 	LightPeers:     100,
 	DatabaseCache:  512,
 	TrieCleanCache: 256,
@@ -86,7 +86,7 @@ func init() {
 
 type Config struct {
 	// The genesis block, which is inserted if the database is empty.
-	// If nil, the Ethereum main net block is used.
+	// If nil, the puffscoin main net block is used.
 	Genesis *core.Genesis `toml:",omitempty"`
 
 	// Protocol options
