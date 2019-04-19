@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -25,21 +25,21 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/filters"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/puffscoin/go-puffscoin"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/common/hexutil"
+	"github.com/puffscoin/go-puffscoin/core/rawdb"
+	"github.com/puffscoin/go-puffscoin/core/state"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/core/vm"
+	"github.com/puffscoin/go-puffscoin/eth"
+	"github.com/puffscoin/go-puffscoin/eth/filters"
+	"github.com/puffscoin/go-puffscoin/internal/ethapi"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/node"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/rlp"
+	"github.com/puffscoin/go-puffscoin/rpc"
 	graphqlgo "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
 )
@@ -47,7 +47,7 @@ import (
 var OnlyOnMainChainError = errors.New("This operation is only available for blocks on the canonical chain.")
 var BlockInvariantError = errors.New("Block objects must be instantiated with at least one of num or hash.")
 
-// Account represents an Ethereum account at a particular block.
+// Account represents an puffscoin account at a particular block.
 type Account struct {
 	backend     *eth.EthAPIBackend
 	address     common.Address
@@ -131,7 +131,7 @@ func (l *Log) Data(ctx context.Context) hexutil.Bytes {
 	return hexutil.Bytes(l.log.Data)
 }
 
-// Transaction represents an Ethereum transaction.
+// Transaction represents an puffscoin transaction.
 // backend and hash are mandatory; all others will be fetched when required.
 type Transaction struct {
 	backend *eth.EthAPIBackend
@@ -345,7 +345,7 @@ const (
 	notCanonical
 )
 
-// Block represents an Ethereum block.
+// Block represents an puffscoin block.
 // backend, and either num or hash are mandatory. All other fields are lazily fetched
 // when required.
 type Block struct {
@@ -814,8 +814,8 @@ func (b *Block) Account(ctx context.Context, args struct {
 // CallData encapsulates arguments to `call` or `estimateGas`.
 // All arguments are optional.
 type CallData struct {
-	From     *common.Address // The Ethereum address the call is from.
-	To       *common.Address // The Ethereum address the call is to.
+	From     *common.Address // The puffscoin address the call is from.
+	To       *common.Address // The puffscoin address the call is to.
 	Gas      *hexutil.Uint64 // The amount of gas provided for the call.
 	GasPrice *hexutil.Big    // The price of each unit of gas, in wei.
 	Value    *hexutil.Big    // The value sent along with the call.
