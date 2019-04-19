@@ -1,5 +1,5 @@
 // Copyright 2014 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -19,8 +19,8 @@ package p2p
 import (
 	"fmt"
 
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/p2p/enr"
+	"github.com/puffscoin/go-puffscoin/p2p/enode"
+	"github.com/puffscoin/go-puffscoin/p2p/enr"
 )
 
 // Protocol represents a P2P subprotocol implementation.
