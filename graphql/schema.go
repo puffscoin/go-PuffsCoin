@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -36,7 +36,7 @@ const schema string = `
         mutation: Mutation
     }
 
-    # Account is an Ethereum account at a particular block.
+    # Account is an puffscoin account at a particular block.
     type Account {
         # Address is the address owning the account.
         address: Address!
@@ -54,7 +54,7 @@ const schema string = `
         storage(slot: Bytes32!): Bytes32!
     }
 
-    # Log is an Ethereum event log.
+    # Log is an puffscoin event log.
     type Log {
         # Index is the index of this log in the block.
         index: Int!
@@ -69,7 +69,7 @@ const schema string = `
         transaction: Transaction!
     }
 
-    # Transaction is an Ethereum transaction.
+    # Transaction is an puffscoin transaction.
     type Transaction {
         # Hash is the hash of this transaction.
         hash: Bytes32!
@@ -137,7 +137,7 @@ const schema string = `
         topics: [[Bytes32!]!]
     }
 
-    # Block is an Ethereum block.
+    # Block is a puffscoin block.
     type Block {
         # Number is the number of this block, starting at 0 for the genesis block.
         number: Long!
