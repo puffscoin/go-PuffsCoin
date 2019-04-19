@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -24,23 +24,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/light"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discv5"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/trie"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/consensus"
+	"github.com/puffscoin/go-puffscoin/core"
+	"github.com/puffscoin/go-puffscoin/core/rawdb"
+	"github.com/puffscoin/go-puffscoin/core/state"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/eth"
+	"github.com/puffscoin/go-puffscoin/eth/downloader"
+	"github.com/puffscoin/go-puffscoin/ethdb"
+	"github.com/puffscoin/go-puffscoin/event"
+	"github.com/puffscoin/go-puffscoin/light"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/p2p/discv5"
+	"github.com/puffscoin/go-puffscoin/params"
+	"github.com/puffscoin/go-puffscoin/rlp"
+	"github.com/puffscoin/go-puffscoin/trie"
 )
 
 const (
@@ -121,8 +121,8 @@ type ProtocolManager struct {
 	ulc *ulc
 }
 
-// NewProtocolManager returns a new ethereum sub protocol manager. The Ethereum sub protocol manages peers capable
-// with the ethereum network.
+// NewProtocolManager returns a new ethereum sub protocol manager. The puffscoin sub protocol manages peers capable
+// with the puffscoin network.
 func NewProtocolManager(
 	chainConfig *params.ChainConfig,
 	indexerConfig *light.IndexerConfig,
@@ -272,7 +272,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 		return p2p.DiscTooManyPeers
 	}
 
-	p.Log().Debug("Light Ethereum peer connected", "name", p.Name())
+	p.Log().Debug("Light puffscoin peer connected", "name", p.Name())
 
 	// Execute the LES handshake
 	var (
@@ -283,7 +283,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 		td      = pm.blockchain.GetTd(hash, number)
 	)
 	if err := p.Handshake(td, hash, number, genesis.Hash(), pm.server); err != nil {
-		p.Log().Debug("Light Ethereum handshake failed", "err", err)
+		p.Log().Debug("Light puffscoin handshake failed", "err", err)
 		return err
 	}
 	if p.fcClient != nil {
@@ -296,7 +296,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 
 	// Register the peer locally
 	if err := pm.peers.Register(p); err != nil {
-		p.Log().Error("Light Ethereum peer registration failed", "err", err)
+		p.Log().Error("Light puffscoin peer registration failed", "err", err)
 		return err
 	}
 	defer func() {
@@ -320,7 +320,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 	// main loop. handle incoming messages.
 	for {
 		if err := pm.handleMsg(p); err != nil {
-			p.Log().Debug("Light Ethereum message handling failed", "err", err)
+			p.Log().Debug("Light puffscoin message handling failed", "err", err)
 			if p.fcServer != nil {
 				p.fcServer.DumpLogs()
 			}
@@ -342,7 +342,7 @@ func (pm *ProtocolManager) handleMsg(p *peer) error {
 	if err != nil {
 		return err
 	}
-	p.Log().Trace("Light Ethereum message arrived", "code", msg.Code, "bytes", msg.Size)
+	p.Log().Trace("Light puffscoin message arrived", "code", msg.Code, "bytes", msg.Size)
 
 	p.responseCount++
 	responseCount := p.responseCount
