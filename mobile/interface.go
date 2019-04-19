@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -16,13 +16,13 @@
 
 // Contains perverted wrappers to allow crossing over empty interfaces.
 
-package geth
+package gpuffs
 
 import (
 	"errors"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
+	"github.com/puffscoin/go-puffscoin/common"
 )
 
 // Interface represents a wrapped version of Go's interface{}, with the capacity
