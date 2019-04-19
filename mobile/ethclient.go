@@ -16,13 +16,13 @@
 
 // Contains a wrapper for the Ethereum client.
 
-package geth
+package gpuffs
 
 import (
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.
