@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -16,11 +16,11 @@
 
 // Contains a wrapper for the Whisper client.
 
-package geth
+package gpuffs
 
 import (
-	"github.com/ethereum/go-ethereum/whisper/shhclient"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv6"
+	"github.com/puffscoin/go-puffscoin/whisper/shhclient"
+	whisper "github.com/puffscoin/go-puffscoin/whisper/whisperv6"
 )
 
 // WhisperClient provides access to the Ethereum APIs.
