@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of go-ethereum.
+// This file is part of go-puffscoin.
 //
 // go-ethereum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,15 +25,15 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/accounts/usbwallet"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/signer/storage"
+	"github.com/puffscoin/go-puffscoin/accounts"
+	"github.com/puffscoin/go-puffscoin/accounts/keystore"
+	"github.com/puffscoin/go-puffscoin/accounts/usbwallet"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/common/hexutil"
+	"github.com/puffscoin/go-puffscoin/internal/ethapi"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/rlp"
+	"github.com/puffscoin/go-puffscoin/signer/storage"
 )
 
 const (
