@@ -1,5 +1,5 @@
 // Copyright 2015 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -32,10 +32,10 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/crypto/ecies"
-	"github.com/ethereum/go-ethereum/p2p/simulations/pipes"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/crypto/ecies"
+	"github.com/puffscoin/go-puffscoin/p2p/simulations/pipes"
+	"github.com/puffscoin/go-puffscoin/rlp"
 	"golang.org/x/crypto/sha3"
 )
 
