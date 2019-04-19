@@ -1,18 +1,18 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of go-ethereum.
+// This file is part of go-puffscoin.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// go-puffscoin is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// go-puffscoin is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with go-puffscoin. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -29,24 +29,24 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/internal/debug"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/go-ethereum/swarm"
-	bzzapi "github.com/ethereum/go-ethereum/swarm/api"
-	swarmmetrics "github.com/ethereum/go-ethereum/swarm/metrics"
-	"github.com/ethereum/go-ethereum/swarm/storage/mock"
-	mockrpc "github.com/ethereum/go-ethereum/swarm/storage/mock/rpc"
-	"github.com/ethereum/go-ethereum/swarm/tracing"
-	sv "github.com/ethereum/go-ethereum/swarm/version"
+	"github.com/puffscoin/go-puffscoin/accounts"
+	"github.com/puffscoin/go-puffscoin/accounts/keystore"
+	"github.com/puffscoin/go-puffscoin/cmd/utils"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/console"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/internal/debug"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/node"
+	"github.com/puffscoin/go-puffscoin/p2p/enode"
+	"github.com/puffscoin/go-puffscoin/rpc"
+	"github.com/puffscoin/go-puffscoin/swarm"
+	bzzapi "github.com/puffscoin/go-puffscoin/swarm/api"
+	swarmmetrics "github.com/puffscoin/go-puffscoin/swarm/metrics"
+	"github.com/puffscoin/go-puffscoin/swarm/storage/mock"
+	mockrpc "github.com/puffscoin/go-puffscoin/swarm/storage/mock/rpc"
+	"github.com/puffscoin/go-puffscoin/swarm/tracing"
+	sv "github.com/puffscoin/go-puffscoin/swarm/version"
 
 	cli "gopkg.in/urfave/cli.v1"
 )
@@ -108,7 +108,7 @@ var app = utils.NewApp("", "Ethereum Swarm")
 func init() {
 	app.Action = bzzd
 	app.Version = sv.ArchiveVersion(gitCommit)
-	app.Copyright = "Copyright 2013-2016 The go-ethereum Authors"
+	app.Copyright = "Copyright 2019 The go-puffscoin Authors"
 	app.Commands = []cli.Command{
 		{
 			Action:             version,
