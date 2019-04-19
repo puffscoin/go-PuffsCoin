@@ -7,12 +7,12 @@ import (
 	"math/big"
 	"strings"
 
-	ethereum "github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/event"
+	puffscoin "github.com/puffscoin/go-puffscoin"
+	"github.com/puffscoin/go-puffscoin/accounts/abi"
+	"github.com/puffscoin/go-puffscoin/accounts/abi/bind"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/event"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -53,22 +53,22 @@ type ENSRegistry struct {
 	ENSRegistryFilterer   // Log filterer for contract events
 }
 
-// ENSRegistryCaller is an auto generated read-only Go binding around an Ethereum contract.
+// ENSRegistryCaller is an auto generated read-only Go binding around an puffscoin contract.
 type ENSRegistryCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ENSRegistryTransactor is an auto generated write-only Go binding around an Ethereum contract.
+// ENSRegistryTransactor is an auto generated write-only Go binding around an puffscoin contract.
 type ENSRegistryTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ENSRegistryFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+// ENSRegistryFilterer is an auto generated log filtering Go binding around an puffscoin contract events.
 type ENSRegistryFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ENSRegistrySession is an auto generated Go binding around an Ethereum contract,
+// ENSRegistrySession is an auto generated Go binding around an puffscoin contract,
 // with pre-set call and transact options.
 type ENSRegistrySession struct {
 	Contract     *ENSRegistry      // Generic contract binding to set the session for
@@ -76,31 +76,31 @@ type ENSRegistrySession struct {
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// ENSRegistryCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// ENSRegistryCallerSession is an auto generated read-only Go binding around an puffscoin contract,
 // with pre-set call options.
 type ENSRegistryCallerSession struct {
 	Contract *ENSRegistryCaller // Generic contract caller binding to set the session for
 	CallOpts bind.CallOpts      // Call options to use throughout this session
 }
 
-// ENSRegistryTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// ENSRegistryTransactorSession is an auto generated write-only Go binding around an puffscoin contract,
 // with pre-set transact options.
 type ENSRegistryTransactorSession struct {
 	Contract     *ENSRegistryTransactor // Generic contract transactor binding to set the session for
 	TransactOpts bind.TransactOpts      // Transaction auth options to use throughout this session
 }
 
-// ENSRegistryRaw is an auto generated low-level Go binding around an Ethereum contract.
+// ENSRegistryRaw is an auto generated low-level Go binding around an puffscoin contract.
 type ENSRegistryRaw struct {
 	Contract *ENSRegistry // Generic contract binding to access the raw methods on
 }
 
-// ENSRegistryCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+// ENSRegistryCallerRaw is an auto generated low-level read-only Go binding around an puffscoin contract.
 type ENSRegistryCallerRaw struct {
 	Contract *ENSRegistryCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// ENSRegistryTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+// ENSRegistryTransactorRaw is an auto generated low-level write-only Go binding around an puffscoin contract.
 type ENSRegistryTransactorRaw struct {
 	Contract *ENSRegistryTransactor // Generic write-only contract binding to access the raw methods on
 }
