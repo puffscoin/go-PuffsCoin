@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -26,13 +26,13 @@ import (
 	"strconv"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/p2p/enr"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/node"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/p2p/enode"
+	"github.com/puffscoin/go-puffscoin/p2p/enr"
+	"github.com/puffscoin/go-puffscoin/rpc"
 )
 
 // Node represents a node in a simulation network which is created by a
