@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -16,19 +16,19 @@
 
 // Contains all the wrappers from the go-ethereum root package.
 
-package geth
+package gpuffs
 
 import (
 	"errors"
 
-	ethereum "github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
+	puffscoin "github.com/puffscoin/go-puffscoin"
+	"github.com/puffscoin/go-puffscoin/common"
 )
 
 // Subscription represents an event subscription where events are
 // delivered on a data channel.
 type Subscription struct {
-	sub ethereum.Subscription
+	sub puffscoin.Subscription
 }
 
 // Unsubscribe cancels the sending of events to the data channel
@@ -39,7 +39,7 @@ func (s *Subscription) Unsubscribe() {
 
 // CallMsg contains parameters for contract calls.
 type CallMsg struct {
-	msg ethereum.CallMsg
+	msg puffscoin.CallMsg
 }
 
 // NewCallMsg creates an empty contract call parameter list.
@@ -75,7 +75,7 @@ func (msg *CallMsg) SetTo(address *Address) {
 // SyncProgress gives progress indications when the node is synchronising with
 // the Ethereum network.
 type SyncProgress struct {
-	progress ethereum.SyncProgress
+	progress puffscoin.SyncProgress
 }
 
 func (p *SyncProgress) GetStartingBlock() int64 { return int64(p.progress.StartingBlock) }
@@ -128,7 +128,7 @@ func (t *Topics) Append(topics *Hashes) {
 
 // FilterQuery contains options for contract log filtering.
 type FilterQuery struct {
-	query ethereum.FilterQuery
+	query puffscoin.FilterQuery
 }
 
 // NewFilterQuery creates an empty filter query for contract log filtering.
