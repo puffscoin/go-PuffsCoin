@@ -1,5 +1,5 @@
 // Copyright 2014 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -25,30 +25,30 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/bloombits"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/filters"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/miner"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/puffscoin/go-puffscoin/accounts"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/common/hexutil"
+	"github.com/puffscoin/go-puffscoin/consensus"
+	"github.com/puffscoin/go-puffscoin/consensus/clique"
+	"github.com/puffscoin/go-puffscoin/consensus/ethash"
+	"github.com/puffscoin/go-puffscoin/core"
+	"github.com/puffscoin/go-puffscoin/core/bloombits"
+	"github.com/puffscoin/go-puffscoin/core/rawdb"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/core/vm"
+	"github.com/puffscoin/go-puffscoin/eth/downloader"
+	"github.com/puffscoin/go-puffscoin/eth/filters"
+	"github.com/puffscoin/go-puffscoin/eth/gasprice"
+	"github.com/puffscoin/go-puffscoin/ethdb"
+	"github.com/puffscoin/go-puffscoin/event"
+	"github.com/puffscoin/go-puffscoin/internal/ethapi"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/miner"
+	"github.com/puffscoin/go-puffscoin/node"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/params"
+	"github.com/puffscoin/go-puffscoin/rlp"
+	"github.com/puffscoin/go-puffscoin/rpc"
 )
 
 type LesServer interface {
@@ -59,8 +59,8 @@ type LesServer interface {
 	SetBloomBitsIndexer(bbIndexer *core.ChainIndexer)
 }
 
-// Ethereum implements the Ethereum full node service.
-type Ethereum struct {
+// puffscoin implements the puffscoin full node service.
+type puffscoin struct {
 	config *Config
 
 	// Channel for shutting down the service
@@ -94,7 +94,7 @@ type Ethereum struct {
 	lock sync.RWMutex // Protects the variadic fields (e.g. gas price and etherbase)
 }
 
-func (s *Ethereum) AddLesServer(ls LesServer) {
+func (s *puffscoin) AddLesServer(ls LesServer) {
 	s.lesServer = ls
 	ls.SetBloomBitsIndexer(s.bloomIndexer)
 }
@@ -130,7 +130,7 @@ func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
 	}
 	log.Info("Initialised chain configuration", "config", chainConfig)
 
-	eth := &Ethereum{
+	eth := &puffscoin{
 		config:         config,
 		chainDb:        chainDb,
 		eventMux:       ctx.EventMux,
@@ -257,7 +257,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, chainConfig *params.ChainCo
 
 // APIs return the collection of RPC services the ethereum package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *Ethereum) APIs() []rpc.API {
+func (s *puffscoin) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.APIBackend)
 
 	// Append any APIs exposed explicitly by the les server
@@ -316,11 +316,11 @@ func (s *Ethereum) APIs() []rpc.API {
 	}...)
 }
 
-func (s *Ethereum) ResetWithGenesisBlock(gb *types.Block) {
+func (s *puffscoin) ResetWithGenesisBlock(gb *types.Block) {
 	s.blockchain.ResetWithGenesisBlock(gb)
 }
 
-func (s *Ethereum) Etherbase() (eb common.Address, err error) {
+func (s *puffscoin) Etherbase() (eb common.Address, err error) {
 	s.lock.RLock()
 	etherbase := s.etherbase
 	s.lock.RUnlock()
@@ -348,7 +348,7 @@ func (s *Ethereum) Etherbase() (eb common.Address, err error) {
 //
 // We regard two types of accounts as local miner account: etherbase
 // and accounts specified via `txpool.locals` flag.
-func (s *Ethereum) isLocalBlock(block *types.Block) bool {
+func (s *puffscoin) isLocalBlock(block *types.Block) bool {
 	author, err := s.engine.Author(block.Header())
 	if err != nil {
 		log.Warn("Failed to retrieve block author", "number", block.NumberU64(), "hash", block.Hash(), "err", err)
@@ -374,7 +374,7 @@ func (s *Ethereum) isLocalBlock(block *types.Block) bool {
 // shouldPreserve checks whether we should preserve the given block
 // during the chain reorg depending on whether the author of block
 // is a local account.
-func (s *Ethereum) shouldPreserve(block *types.Block) bool {
+func (s *puffscoin) shouldPreserve(block *types.Block) bool {
 	// The reason we need to disable the self-reorg preserving for clique
 	// is it can be probable to introduce a deadlock.
 	//
@@ -398,7 +398,7 @@ func (s *Ethereum) shouldPreserve(block *types.Block) bool {
 }
 
 // SetEtherbase sets the mining reward address.
-func (s *Ethereum) SetEtherbase(etherbase common.Address) {
+func (s *puffscoin) SetEtherbase(etherbase common.Address) {
 	s.lock.Lock()
 	s.etherbase = etherbase
 	s.lock.Unlock()
@@ -409,7 +409,7 @@ func (s *Ethereum) SetEtherbase(etherbase common.Address) {
 // StartMining starts the miner with the given number of CPU threads. If mining
 // is already running, this method adjust the number of threads allowed to use
 // and updates the minimum price required by the transaction pool.
-func (s *Ethereum) StartMining(threads int) error {
+func (s *puffscoin) StartMining(threads int) error {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -454,7 +454,7 @@ func (s *Ethereum) StartMining(threads int) error {
 
 // StopMining terminates the miner, both at the consensus engine level as well as
 // at the block creation level.
-func (s *Ethereum) StopMining() {
+func (s *puffscoin) StopMining() {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -466,23 +466,23 @@ func (s *Ethereum) StopMining() {
 	s.miner.Stop()
 }
 
-func (s *Ethereum) IsMining() bool      { return s.miner.Mining() }
-func (s *Ethereum) Miner() *miner.Miner { return s.miner }
+func (s *puffscoin) IsMining() bool      { return s.miner.Mining() }
+func (s *puffscoin) Miner() *miner.Miner { return s.miner }
 
-func (s *Ethereum) AccountManager() *accounts.Manager  { return s.accountManager }
-func (s *Ethereum) BlockChain() *core.BlockChain       { return s.blockchain }
-func (s *Ethereum) TxPool() *core.TxPool               { return s.txPool }
-func (s *Ethereum) EventMux() *event.TypeMux           { return s.eventMux }
-func (s *Ethereum) Engine() consensus.Engine           { return s.engine }
-func (s *Ethereum) ChainDb() ethdb.Database            { return s.chainDb }
-func (s *Ethereum) IsListening() bool                  { return true } // Always listening
-func (s *Ethereum) EthVersion() int                    { return int(s.protocolManager.SubProtocols[0].Version) }
-func (s *Ethereum) NetVersion() uint64                 { return s.networkID }
-func (s *Ethereum) Downloader() *downloader.Downloader { return s.protocolManager.downloader }
+func (s *puffscoin) AccountManager() *accounts.Manager  { return s.accountManager }
+func (s *puffscoin) BlockChain() *core.BlockChain       { return s.blockchain }
+func (s *puffscoin) TxPool() *core.TxPool               { return s.txPool }
+func (s *puffscoin) EventMux() *event.TypeMux           { return s.eventMux }
+func (s *puffscoin) Engine() consensus.Engine           { return s.engine }
+func (s *puffscoin) ChainDb() ethdb.Database            { return s.chainDb }
+func (s *puffscoin) IsListening() bool                  { return true } // Always listening
+func (s *puffscoin) EthVersion() int                    { return int(s.protocolManager.SubProtocols[0].Version) }
+func (s *puffscoin) NetVersion() uint64                 { return s.networkID }
+func (s *puffscoin) Downloader() *downloader.Downloader { return s.protocolManager.downloader }
 
 // Protocols implements node.Service, returning all the currently configured
 // network protocols to start.
-func (s *Ethereum) Protocols() []p2p.Protocol {
+func (s *puffscoin) Protocols() []p2p.Protocol {
 	if s.lesServer == nil {
 		return s.protocolManager.SubProtocols
 	}
@@ -490,8 +490,8 @@ func (s *Ethereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Ethereum protocol implementation.
-func (s *Ethereum) Start(srvr *p2p.Server) error {
+// puffscoin protocol implementation.
+func (s *puffscoin) Start(srvr *p2p.Server) error {
 	// Start the bloom bits servicing goroutines
 	s.startBloomHandlers(params.BloomBitsBlocks)
 
@@ -515,8 +515,8 @@ func (s *Ethereum) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ethereum protocol.
-func (s *Ethereum) Stop() error {
+// puffscoin protocol.
+func (s *puffscoin) Stop() error {
 	s.bloomIndexer.Close()
 	s.blockchain.Stop()
 	s.engine.Close()
