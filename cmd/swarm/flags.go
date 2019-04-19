@@ -1,18 +1,18 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of go-ethereum.
+// This file is part of go-puffscoin.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// go-puffscoin is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// go-puffscoin is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with go-puffscoin. If not, see <http://www.gnu.org/licenses/>.
 
 // Command feed allows the user to create and update signed Swarm feeds
 package main
@@ -52,7 +52,7 @@ var (
 	}
 	SwarmSwapAPIFlag = cli.StringFlag{
 		Name:   "swap-api",
-		Usage:  "URL of the Ethereum API provider to use to settle SWAP payments",
+		Usage:  "URL of the puffscoin API provider to use to settle SWAP payments",
 		EnvVar: SwarmEnvSwapAPI,
 	}
 	SwarmSyncDisabledFlag = cli.BoolTFlag{
