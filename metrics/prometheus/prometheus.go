@@ -1,5 +1,5 @@
 // Copyright 2019 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -22,8 +22,8 @@ import (
 	"net/http"
 	"sort"
 
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/metrics"
 )
 
 // Handler returns an HTTP handler which dump metrics in Prometheus format.
