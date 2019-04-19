@@ -16,13 +16,13 @@
 
 // Contains initialization code for the mbile library.
 
-package geth
+package gpuffs
 
 import (
 	"os"
 	"runtime"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/puffscoin/go-puffscoin/log"
 )
 
 func init() {
