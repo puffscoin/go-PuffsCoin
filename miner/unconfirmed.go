@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -20,9 +20,9 @@ import (
 	"container/ring"
 	"sync"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/log"
 )
 
 // chainRetriever is used by the unconfirmed block set to verify whether a previously
@@ -82,7 +82,7 @@ func (set *unconfirmedBlocks) Insert(index uint64, hash common.Hash) {
 		set.blocks.Move(-1).Link(item)
 	}
 	// Display a log for the user to notify of a new mined block unconfirmed
-	log.Info("🔨 mined potential block", "number", index, "hash", hash)
+	log.Info("🔨 MINED POTENTIAL BLOCK", "number", index, "hash", hash)
 }
 
 // Shift drops all unconfirmed blocks from the set which exceed the unconfirmed sets depth
@@ -104,7 +104,7 @@ func (set *unconfirmedBlocks) Shift(height uint64) {
 		case header == nil:
 			log.Warn("Failed to retrieve header of mined block", "number", next.index, "hash", next.hash)
 		case header.Hash() == next.hash:
-			log.Info("🔗 block reached canonical chain", "number", next.index, "hash", next.hash)
+			log.Info("🔗 BLOCK HAS REACHED CANONICAL CHAIN", "number", next.index, "hash", next.hash)
 		default:
 			// Block is not canonical, check whether we have an uncle or a lost block
 			included := false
