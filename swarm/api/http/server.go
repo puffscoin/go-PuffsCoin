@@ -35,12 +35,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/swarm/api"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	"github.com/ethereum/go-ethereum/swarm/storage"
-	"github.com/ethereum/go-ethereum/swarm/storage/feed"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/swarm/api"
+	"github.com/puffscoin/go-puffscoin/swarm/log"
+	"github.com/puffscoin/go-puffscoin/swarm/storage"
+	"github.com/puffscoin/go-puffscoin/swarm/storage/feed"
 	"github.com/rs/cors"
 )
 
