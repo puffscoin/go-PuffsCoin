@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,9 +17,9 @@
 package rawdb
 
 import (
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/ethdb/leveldb"
-	"github.com/ethereum/go-ethereum/ethdb/memorydb"
+	"github.com/puffscoin/go-puffscoin/ethdb"
+	"github.com/puffscoin/go-puffscoin/ethdb/leveldb"
+	"github.com/puffscoin/go-puffscoin/ethdb/memorydb"
 )
 
 // NewDatabase creates a high level database on top of a given key-value data
