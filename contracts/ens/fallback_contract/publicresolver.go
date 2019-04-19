@@ -7,12 +7,12 @@ import (
 	"math/big"
 	"strings"
 
-	ethereum "github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/event"
+	puffscoin "github.com/puffscoin/go-puffscoin"
+	"github.com/puffscoin/go-puffscoin/accounts/abi"
+	"github.com/puffscoin/go-puffscoin/accounts/abi/bind"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/event"
 )
 
 // PublicResolverABI is the input ABI used to generate the binding from.
