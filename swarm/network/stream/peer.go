@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -23,15 +23,15 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/p2p/protocols"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	pq "github.com/ethereum/go-ethereum/swarm/network/priorityqueue"
-	"github.com/ethereum/go-ethereum/swarm/network/stream/intervals"
-	"github.com/ethereum/go-ethereum/swarm/spancontext"
-	"github.com/ethereum/go-ethereum/swarm/state"
-	"github.com/ethereum/go-ethereum/swarm/storage"
-	"github.com/ethereum/go-ethereum/swarm/tracing"
+	"github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/p2p/protocols"
+	"github.com/puffscoin/go-puffscoin/swarm/log"
+	pq "github.com/puffscoin/go-puffscoin/swarm/network/priorityqueue"
+	"github.com/puffscoin/go-puffscoin/swarm/network/stream/intervals"
+	"github.com/puffscoin/go-puffscoin/swarm/spancontext"
+	"github.com/puffscoin/go-puffscoin/swarm/state"
+	"github.com/puffscoin/go-puffscoin/swarm/storage"
+	"github.com/puffscoin/go-puffscoin/swarm/tracing"
 	opentracing "github.com/opentracing/opentracing-go"
 )
 
