@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -21,9 +21,9 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	"github.com/ethereum/go-ethereum/swarm/storage/mock"
+	"github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/swarm/log"
+	"github.com/puffscoin/go-puffscoin/swarm/storage/mock"
 )
 
 type LocalStoreParams struct {
