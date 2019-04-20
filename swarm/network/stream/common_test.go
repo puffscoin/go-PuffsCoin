@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -30,17 +30,17 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/p2p/simulations/adapters"
-	p2ptest "github.com/ethereum/go-ethereum/p2p/testing"
-	"github.com/ethereum/go-ethereum/swarm/network"
-	"github.com/ethereum/go-ethereum/swarm/network/simulation"
-	"github.com/ethereum/go-ethereum/swarm/state"
-	"github.com/ethereum/go-ethereum/swarm/storage"
-	mockmem "github.com/ethereum/go-ethereum/swarm/storage/mock/mem"
-	"github.com/ethereum/go-ethereum/swarm/testutil"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/p2p/enode"
+	"github.com/puffscoin/go-puffscoin/p2p/simulations/adapters"
+	p2ptest "github.com/puffscoin/go-puffscoin/p2p/testing"
+	"github.com/puffscoin/go-puffscoin/swarm/network"
+	"github.com/puffscoin/go-puffscoin/swarm/network/simulation"
+	"github.com/puffscoin/go-puffscoin/swarm/state"
+	"github.com/puffscoin/go-puffscoin/swarm/storage"
+	mockmem "github.com/puffscoin/go-puffscoin/swarm/storage/mock/mem"
+	"github.com/puffscoin/go-ethereum/swarm/testutil"
 	colorable "github.com/mattn/go-colorable"
 )
 
