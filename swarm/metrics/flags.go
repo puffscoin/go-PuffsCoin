@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -19,10 +19,10 @@ package metrics
 import (
 	"time"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	gethmetrics "github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/metrics/influxdb"
-	"github.com/ethereum/go-ethereum/swarm/log"
+	"github.com/puffscoin/go-puffscoin/cmd/utils"
+	gethmetrics "github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/metrics/influxdb"
+	"github.com/puffscoin/go-puffscoin/swarm/log"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
