@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -25,14 +25,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/p2p/enr"
-	"github.com/ethereum/go-ethereum/p2p/protocols"
-	p2ptest "github.com/ethereum/go-ethereum/p2p/testing"
-	"github.com/ethereum/go-ethereum/swarm/pot"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/log"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/p2p/enode"
+	"github.com/puffscoin/go-puffscoin/p2p/enr"
+	"github.com/puffscoin/go-puffscoin/p2p/protocols"
+	p2ptest "github.com/puffscoin/go-puffscoin/p2p/testing"
+	"github.com/puffscoin/go-puffscoin/swarm/pot"
 )
 
 const (
