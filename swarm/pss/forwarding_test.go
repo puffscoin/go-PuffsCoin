@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/p2p/protocols"
-	"github.com/ethereum/go-ethereum/swarm/network"
-	"github.com/ethereum/go-ethereum/swarm/pot"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv6"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/p2p/enode"
+	"github.com/puffscoin/go-puffscoin/p2p/protocols"
+	"github.com/puffscoin/go-puffscoin/swarm/network"
+	"github.com/puffscoin/go-puffscoin/swarm/pot"
+	whisper "github.com/puffscoin/go-puffscoin/whisper/whisperv6"
 )
 
 type testCase struct {
