@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -29,29 +29,29 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/contracts/chequebook"
-	"github.com/ethereum/go-ethereum/contracts/ens"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/protocols"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/go-ethereum/swarm/api"
-	httpapi "github.com/ethereum/go-ethereum/swarm/api/http"
-	"github.com/ethereum/go-ethereum/swarm/fuse"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	"github.com/ethereum/go-ethereum/swarm/network"
-	"github.com/ethereum/go-ethereum/swarm/network/stream"
-	"github.com/ethereum/go-ethereum/swarm/pss"
-	"github.com/ethereum/go-ethereum/swarm/state"
-	"github.com/ethereum/go-ethereum/swarm/storage"
-	"github.com/ethereum/go-ethereum/swarm/storage/feed"
-	"github.com/ethereum/go-ethereum/swarm/storage/mock"
-	"github.com/ethereum/go-ethereum/swarm/swap"
-	"github.com/ethereum/go-ethereum/swarm/tracing"
+	"github.com/puffscoin/go-puffscoin/accounts/abi/bind"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/contracts/chequebook"
+	"github.com/puffscoin/go-puffscoin/contracts/ens"
+	"github.com/puffscoin/go-puffscoin/ethclient"
+	"github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/p2p"
+	"github.com/puffscoin/go-puffscoin/p2p/protocols"
+	"github.com/puffscoin/go-puffscoin/params"
+	"github.com/puffscoin/go-puffscoin/rpc"
+	"github.com/puffscoin/go-puffscoin/swarm/api"
+	httpapi "github.com/puffscoin/go-puffscoin/swarm/api/http"
+	"github.com/puffscoin/go-puffscoin/swarm/fuse"
+	"github.com/puffscoin/go-puffscoin/swarm/log"
+	"github.com/puffscoin/go-puffscoin/swarm/network"
+	"github.com/puffscoin/go-puffscoin/swarm/network/stream"
+	"github.com/puffscoin/go-puffscoin/swarm/pss"
+	"github.com/puffscoin/go-puffscoin/swarm/state"
+	"github.com/puffscoin/go-puffscoin/swarm/storage"
+	"github.com/puffscoin/go-puffscoin/swarm/storage/feed"
+	"github.com/puffscoin/go-puffscoin/swarm/storage/mock"
+	"github.com/puffscoin/go-puffscoin/swarm/swap"
+	"github.com/puffscoin/go-puffscoin/swarm/tracing"
 )
 
 var (
