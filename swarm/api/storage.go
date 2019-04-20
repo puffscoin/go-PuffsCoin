@@ -1,5 +1,5 @@
 // Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +20,7 @@ import (
 	"context"
 	"path"
 
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/puffscoin/go-puffscoin/swarm/storage"
 )
 
 type Response struct {
