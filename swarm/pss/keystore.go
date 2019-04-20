@@ -1,5 +1,5 @@
 // Copyright 2019 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -22,11 +22,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv6"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/metrics"
+	"github.com/puffscoin/go-puffscoin/swarm/log"
+	whisper "github.com/puffscoin/go-puffscoin/whisper/whisperv6"
 )
 
 type KeyStore struct {
