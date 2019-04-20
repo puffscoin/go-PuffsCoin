@@ -1,5 +1,5 @@
 // Copyright 2018 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -21,9 +21,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ethereum/go-ethereum/common/bitutil"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/puffscoin/go-puffscoin/common/bitutil"
+	"github.com/puffscoin/go-puffscoin/common/hexutil"
+	"github.com/puffscoin/go-puffscoin/swarm/storage"
 )
 
 // TopicLength establishes the max length of a topic string
