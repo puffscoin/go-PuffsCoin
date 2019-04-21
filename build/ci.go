@@ -1,5 +1,5 @@
 // Copyright 2019 The go-puffscoin Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -64,10 +64,10 @@ import (
 )
 
 var (
-	// Files that end up in the geth*.zip archive.
+	// Files that end up in the gpuffs*.zip archive.
 	gethArchiveFiles = []string{
 		"COPYING",
-		executablePath("geth"),
+		executablePath("gpuffs"),
 	}
 
 	// Files that end up in the geth-alltools*.zip archive.
@@ -76,7 +76,7 @@ var (
 		executablePath("abigen"),
 		executablePath("bootnode"),
 		executablePath("evm"),
-		executablePath("geth"),
+		executablePath("gpuffs"),
 		executablePath("puppeth"),
 		executablePath("rlpdump"),
 		executablePath("wnode"),
@@ -97,7 +97,7 @@ var (
 		},
 		{
 			BinaryName:  "bootnode",
-			Description: "Ethereum bootnode.",
+			Description: "puffscoin bootnode.",
 		},
 		{
 			BinaryName:  "evm",
@@ -129,19 +129,19 @@ var (
 	debSwarmExecutables = []debExecutable{
 		{
 			BinaryName:  "swarm",
-			PackageName: "ethereum-swarm",
+			PackageName: "puffscoin-swarm",
 			Description: "puffscoin Swarm daemon and tools",
 		},
 	}
 
 	debEthereum = debPackage{
-		Name:        "ethereum",
+		Name:        "puffscoin",
 		Version:     params.Version,
 		Executables: debExecutables,
 	}
 
 	debSwarm = debPackage{
-		Name:        "ethereum-swarm",
+		Name:        "puffscoin-swarm",
 		Version:     sv.Version,
 		Executables: debSwarmExecutables,
 	}
@@ -406,8 +406,8 @@ func doArchive(cmdline []string) {
 		env = build.Env()
 
 		basegeth = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
-		geth     = "geth-" + basegeth + ext
-		alltools = "geth-alltools-" + basegeth + ext
+		gpuffs     = "gpuffs-" + basegeth + ext
+		alltools = "gpuffs-alltools-" + basegeth + ext
 
 		baseswarm = archiveBasename(*arch, sv.ArchiveVersion(env.Commit))
 		swarm     = "swarm-" + baseswarm + ext
@@ -569,7 +569,7 @@ func makeWorkdir(wdflag string) string {
 	if wdflag != "" {
 		err = os.MkdirAll(wdflag, 0744)
 	} else {
-		wdflag, err = ioutil.TempDir("", "geth-build-")
+		wdflag, err = ioutil.TempDir("", "gpuffs-build-")
 	}
 	if err != nil {
 		log.Fatal(err)
@@ -686,7 +686,7 @@ func (meta debMetadata) ExeConflicts(exe debExecutable) string {
 		// be preferred and the conflicting files should be handled via
 		// alternates. We might do this eventually but using a conflict is
 		// easier now.
-		return "ethereum, " + exe.Package()
+		return "puffscoin, " + exe.Package()
 	}
 	return ""
 }
@@ -755,10 +755,10 @@ func doWindowsInstaller(cmdline []string) {
 	// first section contains the geth binary, second section holds the dev tools.
 	templateData := map[string]interface{}{
 		"License":  "COPYING",
-		"Geth":     gethTool,
+		"gpuffs":     gethTool,
 		"DevTools": devTools,
 	}
-	build.Render("build/nsis.geth.nsi", filepath.Join(*workdir, "geth.nsi"), 0644, nil)
+	build.Render("build/nsis.gpuffs.nsi", filepath.Join(*workdir, "gpuffs.nsi"), 0644, nil)
 	build.Render("build/nsis.install.nsh", filepath.Join(*workdir, "install.nsh"), 0644, templateData)
 	build.Render("build/nsis.uninstall.nsh", filepath.Join(*workdir, "uninstall.nsh"), 0644, allTools)
 	build.Render("build/nsis.pathupdate.nsh", filepath.Join(*workdir, "PathUpdate.nsh"), 0644, nil)
@@ -807,11 +807,11 @@ func doAndroidArchive(cmdline []string) {
 	}
 	// Build the Android archive and Maven resources
 	build.MustRun(goTool("get", "golang.org/x/mobile/cmd/gomobile", "golang.org/x/mobile/cmd/gobind"))
-	build.MustRun(gomobileTool("bind", "-ldflags", "-s -w", "--target", "android", "--javapkg", "org.ethereum", "-v", "github.com/ethereum/go-ethereum/mobile"))
+	build.MustRun(gomobileTool("bind", "-ldflags", "-s -w", "--target", "android", "--javapkg", "org.puffscoin", "-v", "github.com/puffscoin/go-puffscoin/mobile"))
 
 	if *local {
 		// If we're building locally, copy bundle to build dir and skip Maven
-		os.Rename("geth.aar", filepath.Join(GOBIN, "geth.aar"))
+		os.Rename("gpuffs.aar", filepath.Join(GOBIN, "gpuffs.aar"))
 		return
 	}
 	meta := newMavenMetadata(env)
@@ -821,8 +821,8 @@ func doAndroidArchive(cmdline []string) {
 	maybeSkipArchive(env)
 
 	// Sign and upload the archive to Azure
-	archive := "geth-" + archiveBasename("android", params.ArchiveVersion(env.Commit)) + ".aar"
-	os.Rename("geth.aar", archive)
+	archive := "gpuffs-" + archiveBasename("android", params.ArchiveVersion(env.Commit)) + ".aar"
+	os.Rename("gpuffs.aar", archive)
 
 	if err := archiveUpload(archive, *upload, *signer); err != nil {
 		log.Fatal(err)
@@ -907,7 +907,7 @@ func newMavenMetadata(env build.Environment) mavenMetadata {
 	}
 	return mavenMetadata{
 		Version:      version,
-		Package:      "geth-" + version,
+		Package:      "gpuffs-" + version,
 		Develop:      isUnstableBuild(env),
 		Contributors: contribs,
 	}
@@ -928,7 +928,7 @@ func doXCodeFramework(cmdline []string) {
 	// Build the iOS XCode framework
 	build.MustRun(goTool("get", "golang.org/x/mobile/cmd/gomobile", "golang.org/x/mobile/cmd/gobind"))
 	build.MustRun(gomobileTool("init"))
-	bind := gomobileTool("bind", "-ldflags", "-s -w", "--target", "ios", "--tags", "ios", "-v", "github.com/ethereum/go-ethereum/mobile")
+	bind := gomobileTool("bind", "-ldflags", "-s -w", "--target", "ios", "--tags", "ios", "-v", "github.com/puffscoin/go-puffscoin/mobile")
 
 	if *local {
 		// If we're building locally, use the build folder and stop afterwards
@@ -936,7 +936,7 @@ func doXCodeFramework(cmdline []string) {
 		build.MustRun(bind)
 		return
 	}
-	archive := "geth-" + archiveBasename("ios", params.ArchiveVersion(env.Commit))
+	archive := "gpuffs-" + archiveBasename("ios", params.ArchiveVersion(env.Commit))
 	if err := os.Mkdir(archive, os.ModePerm); err != nil {
 		log.Fatal(err)
 	}
@@ -954,8 +954,8 @@ func doXCodeFramework(cmdline []string) {
 	// Prepare and upload a PodSpec to CocoaPods
 	if *deploy != "" {
 		meta := newPodMetadata(env, archive)
-		build.Render("build/pod.podspec", "Geth.podspec", 0755, meta)
-		build.MustRunCommand("pod", *deploy, "push", "Geth.podspec", "--allow-warnings", "--verbose")
+		build.Render("build/pod.podspec", "gpuffs.podspec", 0755, meta)
+		build.MustRunCommand("pod", *deploy, "push", "gpuffs.podspec", "--allow-warnings", "--verbose")
 	}
 }
 
@@ -1008,7 +1008,7 @@ func newPodMetadata(env build.Environment, archive string) podMetadata {
 
 func doXgo(cmdline []string) {
 	var (
-		alltools = flag.Bool("alltools", false, `Flag whether we're building all known tools, or only on in particular`)
+		alltools = flag.Bool("alltools", false, `Flag whether we're building all known tools, or only one in particular`)
 	)
 	flag.CommandLine.Parse(cmdline)
 	env := build.Env()
