@@ -1,4 +1,4 @@
-// Copyright 2019 The go-puffscoin Authors
+// Copyright 2019 The go-ethereum Authors
 // This file is part of go-puffscoin.
 //
 // go-puffscoin is free software: you can redistribute it and/or modify
@@ -6,13 +6,13 @@
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-puffscoin is distributed in the hope that it will be useful,
+// go-ethereum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-puffscoin. If not, see <http://www.gnu.org/licenses/>.
+// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
 // gpuffs is the official command-line client for puffscoin.
 package main
@@ -189,9 +189,9 @@ var (
 
 func init() {
 	// Initialize the CLI app and start gpuffs
-	app.Action = geth
+	app.Action = gpuffs
 	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2019 The go-puffscoin Authors"
+	app.Copyright = "Copyright 2019 PUFFScoin, The Leafy Cauldron Apothecary"
 	app.Commands = []cli.Command{
 		// See chaincmd.go:
 		initCommand,
@@ -287,10 +287,10 @@ func main() {
 	}
 }
 
-// gpuffs is the main entry point into the system if no special subcommand is ran.
+// gpuffs is the main entry point into the system if no special subcommand is run.
 // It creates a default node based on the command line arguments and runs it in
 // blocking mode, waiting for it to be shut down.
-func geth(ctx *cli.Context) error {
+func gpuffs(ctx *cli.Context) error {
 	if args := ctx.Args(); len(args) > 0 {
 		return fmt.Errorf("invalid command: %q", args[0])
 	}
@@ -384,10 +384,10 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) || ctx.GlobalBool(utils.DeveloperFlag.Name) {
 		// Mining only makes sense if a full puffscoin node is running
 		if ctx.GlobalString(utils.SyncModeFlag.Name) == "light" {
-			utils.Fatalf("Light clients do not support mining")
+			utils.Fatalf("Light blockchain clients do not support mining")
 		}
-		var ethereum *eth.Ethereum
-		if err := stack.Service(&ethereum); err != nil {
+		var puffscoin *eth.puffscoin
+		if err := stack.Service(&puffscoin); err != nil {
 			utils.Fatalf("puffscoin service not running: %v", err)
 		}
 		// Set the gas price to the limits from the CLI and start mining
@@ -395,7 +395,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		if ctx.IsSet(utils.MinerGasPriceFlag.Name) {
 			gasprice = utils.GlobalBig(ctx, utils.MinerGasPriceFlag.Name)
 		}
-		ethereum.TxPool().SetGasPrice(gasprice)
+		puffscoin.TxPool().SetGasPrice(gasprice)
 
 		threads := ctx.GlobalInt(utils.MinerLegacyThreadsFlag.Name)
 		if ctx.GlobalIsSet(utils.MinerThreadsFlag.Name) {
