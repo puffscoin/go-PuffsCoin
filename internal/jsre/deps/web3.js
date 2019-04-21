@@ -1776,7 +1776,7 @@ var ETH_UNITS = [
     'nano',
     'micro',
     'milli',
-    'ether',
+    'puffs',
     'grand',
     'Mether',
     'Gether',
@@ -1905,7 +1905,7 @@ var unitMap = {
     'finney':       '1000000000000000',
     'milliether':    '1000000000000000',
     'milli':         '1000000000000000',
-    'ether':        '1000000000000000000',
+    'puffs':        '1000000000000000000',
     'kether':       '1000000000000000000000',
     'grand':        '1000000000000000000000',
     'mether':       '1000000000000000000000000',
@@ -2129,7 +2129,7 @@ var toHex = function (val) {
  * @throws error if the unit is not correct:w
  */
 var getValueOfUnit = function (unit) {
-    unit = unit ? unit.toLowerCase() : 'ether';
+    unit = unit ? unit.toLowerCase() : 'puffs';
     var unitValue = unitMap[unit];
     if (unitValue === undefined) {
         throw new Error('This unit doesn\'t exists, please use the one of the following units' + JSON.stringify(unitMap, null, 2));
@@ -2147,7 +2147,7 @@ var getValueOfUnit = function (unit) {
  * - gwei       nanoether      shannon      nano
  * - --         microether     szabo        micro
  * - --         milliether     finney       milli
- * - ether      --             --
+ * - puffs      --             --
  * - kether                    --           grand
  * - mether
  * - gether
@@ -2175,7 +2175,7 @@ var fromWei = function(number, unit) {
  * - --         microether     szabo        micro
  * - --         microether     szabo        micro
  * - --         milliether     finney       milli
- * - ether      --             --
+ * - puffs      --             --
  * - kether                    --           grand
  * - mether
  * - gether
@@ -2409,7 +2409,7 @@ var isJson = function (str) {
 };
 
 /**
- * Returns true if given string is a valid Ethereum block header bloom.
+ * Returns true if given string is a valid PUFFScoin block header bloom.
  *
  * @method isBloom
  * @param {String} hex encoded bloom filter
@@ -4292,7 +4292,7 @@ var XHR2 = require('xhr2'); // jshint ignore: line
  * HttpProvider should be used to send rpc calls over http
  */
 var HttpProvider = function (host, timeout, user, password) {
-  this.host = host || 'http://localhost:8545';
+  this.host = host || 'http://localhost:11363';
   this.timeout = timeout || 0;
   this.user = user;
   this.password = password;
