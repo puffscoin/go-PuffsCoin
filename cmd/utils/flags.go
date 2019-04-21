@@ -134,15 +134,15 @@ var (
 	}
 	TestnetFlag = cli.BoolFlag{
 		Name:  "testnet",
-		Usage: "Ropsten network: pre-configured proof-of-work test network",
+		Usage: "Ropsten network: pre-configured proof-of-work test network (not currently supported)",
 	}
 	RinkebyFlag = cli.BoolFlag{
 		Name:  "rinkeby",
-		Usage: "Rinkeby network: pre-configured proof-of-authority test network",
+		Usage: "Rinkeby network: pre-configured proof-of-authority test network (not currently supported)",
 	}
 	GoerliFlag = cli.BoolFlag{
 		Name:  "goerli",
-		Usage: "Görli network: pre-configured proof-of-authority test network",
+		Usage: "Görli network: pre-configured proof-of-authority test network (not curreently supported)",
 	}
 	ConstantinopleOverrideFlag = cli.Uint64Flag{
 		Name:  "override.constantinople",
@@ -574,7 +574,7 @@ var (
 	ListenPortFlag = cli.IntFlag{
 		Name:  "port",
 		Usage: "Network listening port",
-		Value: 30303,
+		Value: 31313,
 	}
 	BootnodesFlag = cli.StringFlag{
 		Name:  "bootnodes",
