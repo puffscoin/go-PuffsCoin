@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/puffscoin/go-puffscoin/accounts"
+	"github.com/puffscoin/go-puffscoin/event"
+	"github.com/puffscoin/go-puffscoin/log"
 	"github.com/karalabe/hid"
 )
 
@@ -42,7 +42,7 @@ const refreshCycle = time.Second
 // trashing.
 const refreshThrottling = 500 * time.Millisecond
 
-// Hub is a accounts.Backend that can find and handle generic USB hardware wallets.
+// Hub is a puffscoin accounts backend that can find and handle generic USB hardware wallets.
 type Hub struct {
 	scheme     string                  // Protocol scheme prefixing account and wallet URLs.
 	vendorID   uint16                  // USB vendor identifier used for device discovery
