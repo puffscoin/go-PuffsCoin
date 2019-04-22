@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -27,12 +27,12 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/usbwallet/trezor"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/puffscoin/go-puffscoin/accounts"
+	"github.com/puffscoin/go-puffscoin/accounts/usbwallet/trezor"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/common/hexutil"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/log"
 	"github.com/golang/protobuf/proto"
 )
 
@@ -171,7 +171,7 @@ func (w *trezorDriver) Heartbeat() error {
 }
 
 // Derive implements usbwallet.driver, sending a derivation request to the Trezor
-// and returning the Ethereum address located on that derivation path.
+// and returning the PUFFScoin address located on that derivation path.
 func (w *trezorDriver) Derive(path accounts.DerivationPath) (common.Address, error) {
 	return w.trezorDerive(path)
 }
@@ -186,7 +186,7 @@ func (w *trezorDriver) SignTx(path accounts.DerivationPath, tx *types.Transactio
 }
 
 // trezorDerive sends a derivation request to the Trezor device and returns the
-// Ethereum address located on that path.
+// PUFFScoin address located on that path.
 func (w *trezorDriver) trezorDerive(derivationPath []uint32) (common.Address, error) {
 	address := new(trezor.EthereumAddress)
 	if _, err := w.trezorExchange(&trezor.EthereumGetAddress{AddressN: derivationPath}, address); err != nil {
@@ -235,7 +235,7 @@ func (w *trezorDriver) trezorSign(derivationPath []uint32, tx *types.Transaction
 			return common.Address{}, nil, err
 		}
 	}
-	// Extract the Ethereum signature and do a sanity validation
+	// Extract the PUFFScoin signature and do a sanity validation
 	if len(response.GetSignatureR()) == 0 || len(response.GetSignatureS()) == 0 || response.GetSignatureV() == 0 {
 		return common.Address{}, nil, errors.New("reply lacks signature")
 	}
