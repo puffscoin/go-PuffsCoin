@@ -44,7 +44,7 @@ import (
 	"github.com/puffscoin/go-puffscoin/p2p/enode"
 	"github.com/puffscoin/go-puffscoin/p2p/nat"
 	"github.com/puffscoin/go-puffscoin/whisper/mailserver"
-	whisper "github.com/puffscoin/go-ethereum/whisper/whisperv6"
+	whisper "github.com/puffscoin/go-puffscoin/whisper/whisperv6"
 	"golang.org/x/crypto/pbkdf2"
 )
 
