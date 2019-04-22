@@ -1,5 +1,5 @@
 // Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-puffscoin library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -25,12 +25,12 @@ import (
 	"sync"
 	"time"
 
-	ethereum "github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
+	puffscoin "github.com/puffscoin/go-puffscoin"
+	"github.com/puffscoin/go-puffscoin/accounts"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/core/types"
+	"github.com/puffscoin/go-puffscoin/crypto"
+	"github.com/puffscoin/go-puffscoin/log"
 	"github.com/karalabe/hid"
 )
 
@@ -85,7 +85,7 @@ type wallet struct {
 
 	deriveNextPath accounts.DerivationPath   // Next derivation path for account auto-discovery
 	deriveNextAddr common.Address            // Next derived account address for auto-discovery
-	deriveChain    ethereum.ChainStateReader // Blockchain state reader to discover used account with
+	deriveChain    puffscoin.ChainStateReader // Blockchain state reader to discover used account with
 	deriveReq      chan chan struct{}        // Channel to request a self-derivation on
 	deriveQuit     chan chan error           // Channel to terminate the self-deriver with
 
@@ -483,7 +483,7 @@ func (w *wallet) Derive(path accounts.DerivationPath, pin bool) (accounts.Accoun
 // user used previously (based on the chain state), but ones that he/she did not
 // explicitly pin to the wallet manually. To avoid chain head monitoring, self
 // derivation only runs during account listing (and even then throttled).
-func (w *wallet) SelfDerive(base accounts.DerivationPath, chain ethereum.ChainStateReader) {
+func (w *wallet) SelfDerive(base accounts.DerivationPath, chain puffscoin.ChainStateReader) {
 	w.stateLock.Lock()
 	defer w.stateLock.Unlock()
 
