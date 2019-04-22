@@ -12,5 +12,5 @@ FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /go-puffscoin/build/bin/gpuffs /usr/local/bin/
 
-EXPOSE 8545 8546 30303 30303/udp
-ENTRYPOINT ["geth"]
+EXPOSE 11363 11364 31313 31313/udp
+ENTRYPOINT ["gpuffs"]
