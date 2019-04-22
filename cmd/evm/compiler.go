@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/ethereum/go-puffscoin/cmd/evm/internal/compiler"
+	"github.com/puffscoin/go-puffscoin/cmd/evm/internal/compiler"
 
 	cli "gopkg.in/urfave/cli.v1"
 )
