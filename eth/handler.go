@@ -103,8 +103,8 @@ type ProtocolManager struct {
 	wg sync.WaitGroup
 }
 
-// NewProtocolManager returns a new Ethereum sub protocol manager. The Ethereum sub protocol manages peers capable
-// with the Ethereum network.
+// NewProtocolManager returns a new PUFFScoin sub protocol manager. The puffscoin sub protocol manages peers capable
+// with the PUFFScoin network.
 func NewProtocolManager(config *params.ChainConfig, mode downloader.SyncMode, networkID uint64, mux *event.TypeMux, txpool txPool, engine consensus.Engine, blockchain *core.BlockChain, chaindb ethdb.Database, whitelist map[uint64]common.Hash) (*ProtocolManager, error) {
 	// Create the protocol manager with the base fields
 	manager := &ProtocolManager{
@@ -202,7 +202,7 @@ func (pm *ProtocolManager) removePeer(id string) {
 	}
 	log.Debug("Removing puffscoin peer", "peer", id)
 
-	// Unregister the peer from the downloader and Ethereum peer set
+	// Unregister the peer from the downloader and puffscoin peer set
 	pm.downloader.UnregisterPeer(id)
 	if err := pm.peers.Unregister(id); err != nil {
 		log.Error("Peer removal failed", "peer", id, "err", err)
