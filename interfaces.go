@@ -22,8 +22,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/gpuffs/go-gpuffs/common"
-	"github.com/gpuffs/go-gpuffs/core/types"
+	"github.com/puffscoin/go-puffscoin/common"
+	"github.com/puffscoin/go-puffscoin/core/types"
 )
 
 // NotFound is returned by API methods if the requested item does not exist.
