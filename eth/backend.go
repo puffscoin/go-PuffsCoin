@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package eth implements the Ethereum protocol.
+// Package eth implements the puffscoin protocol.
 package eth
 
 import (
@@ -101,7 +101,7 @@ func (s *puffscoin) AddLesServer(ls LesServer) {
 
 // New creates a new puffscoin object (including the
 // initialisation of the common puffscoin object)
-func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
+func New(ctx *node.ServiceContext, config *Config) (*puffscoin, error) {
 	// Ensure configuration values are compatible and sane
 	if config.SyncMode == downloader.LightSync {
 		return nil, errors.New("can't run eth.puffscoin in light sync mode, use les.LightEthereum")
@@ -224,7 +224,7 @@ func makeExtraData(extra []byte) []byte {
 	return extra
 }
 
-// CreateConsensusEngine creates the required type of consensus engine instance for an Ethereum service
+// CreateConsensusEngine creates the required type of consensus engine instance for an puffscoin service
 func CreateConsensusEngine(ctx *node.ServiceContext, chainConfig *params.ChainConfig, config *ethash.Config, notify []string, noverify bool, db ethdb.Database) consensus.Engine {
 	// If proof-of-authority is requested, set it up
 	if chainConfig.Clique != nil {
