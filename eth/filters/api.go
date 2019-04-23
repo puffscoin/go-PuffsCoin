@@ -245,7 +245,7 @@ func (api *PublicFilterAPI) Logs(ctx context.Context, crit FilterCriteria) (*rpc
 		matchedLogs = make(chan []*types.Log)
 	)
 
-	logsSub, err := api.events.SubscribeLogs(ethereum.FilterQuery(crit), matchedLogs)
+	logsSub, err := api.events.SubscribeLogs(puffscoin.FilterQuery(crit), matchedLogs)
 	if err != nil {
 		return nil, err
 	}
@@ -290,7 +290,7 @@ type FilterCriteria puffscoin.FilterQuery
 // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter
 func (api *PublicFilterAPI) NewFilter(crit FilterCriteria) (rpc.ID, error) {
 	logs := make(chan []*types.Log)
-	logsSub, err := api.events.SubscribeLogs(ethereum.FilterQuery(crit), logs)
+	logsSub, err := api.events.SubscribeLogs(puffscoin.FilterQuery(crit), logs)
 	if err != nil {
 		return rpc.ID(""), err
 	}
