@@ -20,7 +20,7 @@ import (
 	"crypto/ecdsa"
 	"sync"
          
-	puffscoin "github.com/puffscoin/go-puffscoin"
+	Puffscoin "github.com/puffscoin/go-puffscoin"
 	"github.com/puffscoin/go-puffscoin/common"
 	"github.com/puffscoin/go-puffscoin/common/mclock"
 	"github.com/puffscoin/go-puffscoin/core"
@@ -57,7 +57,7 @@ type LesServer struct {
 	priorityClientPool *priorityClientPool
 }
 
-func NewLesServer(eth *eth.puffscoin, config *eth.Config) (*LesServer, error) {
+func NewLesServer(eth *eth.Puffscoin, config *eth.Config) (*LesServer, error) {
 	quitSync := make(chan struct{})
 	pm, err := NewProtocolManager(
 		eth.BlockChain().Config(),
