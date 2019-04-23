@@ -1224,7 +1224,7 @@ func NewService(backend *eth.EthAPIBackend, endpoint string, cors, vhosts []stri
 // RegisterGraphQLService is a utility function to construct a new service and register it against a node.
 func RegisterGraphQLService(stack *node.Node, endpoint string, cors, vhosts []string, timeouts rpc.HTTPTimeouts) error {
 	return stack.Register(func(ctx *node.ServiceContext) (node.Service, error) {
-		var puffscoin *eth.puffscoin
+		var puffscoin *eth.Puffscoin
 		if err := ctx.Service(&puffscoin); err != nil {
 			return nil, err
 		}
