@@ -46,7 +46,7 @@ func DeployENSRegistry(auth *bind.TransactOpts, backend bind.ContractBackend) (c
 	return address, tx, &ENSRegistry{ENSRegistryCaller: ENSRegistryCaller{contract: contract}, ENSRegistryTransactor: ENSRegistryTransactor{contract: contract}, ENSRegistryFilterer: ENSRegistryFilterer{contract: contract}}, nil
 }
 
-// ENSRegistry is an auto generated Go binding around an Ethereum contract.
+// ENSRegistry is an auto generated Go binding around an PUFFScoin smart contract.
 type ENSRegistry struct {
 	ENSRegistryCaller     // Read-only binding to the contract
 	ENSRegistryTransactor // Write-only binding to the contract
@@ -358,7 +358,7 @@ type ENSRegistryNewOwnerIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -500,7 +500,7 @@ type ENSRegistryNewResolverIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -633,7 +633,7 @@ type ENSRegistryNewTTLIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -766,7 +766,7 @@ type ENSRegistryTransferIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
