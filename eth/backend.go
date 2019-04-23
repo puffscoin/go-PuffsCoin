@@ -101,7 +101,7 @@ func (s *Puffscoin) AddLesServer(ls LesServer) {
 
 // New creates a new puffscoin object (including the
 // initialisation of the common puffscoin object)
-func New(ctx *node.ServiceContext, config *Config) (*puffscoin, error) {
+func New(ctx *node.ServiceContext, config *Config) (*Puffscoin, error) {
 	// Ensure configuration values are compatible and sane
 	if config.SyncMode == downloader.LightSync {
 		return nil, errors.New("can't run eth.puffscoin in light sync mode, use les.LightEthereum")
@@ -130,7 +130,7 @@ func New(ctx *node.ServiceContext, config *Config) (*puffscoin, error) {
 	}
 	log.Info("Initialised chain configuration", "config", chainConfig)
 
-	eth := &puffscoin{
+	eth := &Puffscoin{
 		config:         config,
 		chainDb:        chainDb,
 		eventMux:       ctx.EventMux,
@@ -257,7 +257,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, chainConfig *params.ChainCo
 
 // APIs return the collection of RPC services the ethereum package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *puffscoin) APIs() []rpc.API {
+func (s *Puffscoin) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.APIBackend)
 
 	// Append any APIs exposed explicitly by the les server
@@ -316,11 +316,11 @@ func (s *puffscoin) APIs() []rpc.API {
 	}...)
 }
 
-func (s *puffscoin) ResetWithGenesisBlock(gb *types.Block) {
+func (s *Puffscoin) ResetWithGenesisBlock(gb *types.Block) {
 	s.blockchain.ResetWithGenesisBlock(gb)
 }
 
-func (s *puffscoin) Etherbase() (eb common.Address, err error) {
+func (s *Puffscoin) Etherbase() (eb common.Address, err error) {
 	s.lock.RLock()
 	etherbase := s.etherbase
 	s.lock.RUnlock()
@@ -348,7 +348,7 @@ func (s *puffscoin) Etherbase() (eb common.Address, err error) {
 //
 // We regard two types of accounts as local miner account: etherbase
 // and accounts specified via `txpool.locals` flag.
-func (s *puffscoin) isLocalBlock(block *types.Block) bool {
+func (s *Puffscoin) isLocalBlock(block *types.Block) bool {
 	author, err := s.engine.Author(block.Header())
 	if err != nil {
 		log.Warn("Failed to retrieve block author", "number", block.NumberU64(), "hash", block.Hash(), "err", err)
@@ -374,7 +374,7 @@ func (s *puffscoin) isLocalBlock(block *types.Block) bool {
 // shouldPreserve checks whether we should preserve the given block
 // during the chain reorg depending on whether the author of block
 // is a local account.
-func (s *puffscoin) shouldPreserve(block *types.Block) bool {
+func (s *Puffscoin) shouldPreserve(block *types.Block) bool {
 	// The reason we need to disable the self-reorg preserving for clique
 	// is it can be probable to introduce a deadlock.
 	//
@@ -398,7 +398,7 @@ func (s *puffscoin) shouldPreserve(block *types.Block) bool {
 }
 
 // SetEtherbase sets the mining reward address.
-func (s *puffscoin) SetEtherbase(etherbase common.Address) {
+func (s *Puffscoin) SetEtherbase(etherbase common.Address) {
 	s.lock.Lock()
 	s.etherbase = etherbase
 	s.lock.Unlock()
@@ -409,7 +409,7 @@ func (s *puffscoin) SetEtherbase(etherbase common.Address) {
 // StartMining starts the miner with the given number of CPU threads. If mining
 // is already running, this method adjust the number of threads allowed to use
 // and updates the minimum price required by the transaction pool.
-func (s *puffscoin) StartMining(threads int) error {
+func (s *Puffscoin) StartMining(threads int) error {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -454,7 +454,7 @@ func (s *puffscoin) StartMining(threads int) error {
 
 // StopMining terminates the miner, both at the consensus engine level as well as
 // at the block creation level.
-func (s *puffscoin) StopMining() {
+func (s *Puffscoin) StopMining() {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -466,23 +466,23 @@ func (s *puffscoin) StopMining() {
 	s.miner.Stop()
 }
 
-func (s *puffscoin) IsMining() bool      { return s.miner.Mining() }
-func (s *puffscoin) Miner() *miner.Miner { return s.miner }
+func (s *Puffscoin) IsMining() bool      { return s.miner.Mining() }
+func (s *Puffscoin) Miner() *miner.Miner { return s.miner }
 
-func (s *puffscoin) AccountManager() *accounts.Manager  { return s.accountManager }
-func (s *puffscoin) BlockChain() *core.BlockChain       { return s.blockchain }
-func (s *puffscoin) TxPool() *core.TxPool               { return s.txPool }
-func (s *puffscoin) EventMux() *event.TypeMux           { return s.eventMux }
-func (s *puffscoin) Engine() consensus.Engine           { return s.engine }
-func (s *puffscoin) ChainDb() ethdb.Database            { return s.chainDb }
-func (s *puffscoin) IsListening() bool                  { return true } // Always listening
-func (s *puffscoin) EthVersion() int                    { return int(s.protocolManager.SubProtocols[0].Version) }
-func (s *puffscoin) NetVersion() uint64                 { return s.networkID }
-func (s *puffscoin) Downloader() *downloader.Downloader { return s.protocolManager.downloader }
+func (s *Puffscoin) AccountManager() *accounts.Manager  { return s.accountManager }
+func (s *Puffscoin) BlockChain() *core.BlockChain       { return s.blockchain }
+func (s *Puffscoin) TxPool() *core.TxPool               { return s.txPool }
+func (s *Puffscoin) EventMux() *event.TypeMux           { return s.eventMux }
+func (s *Puffscoin) Engine() consensus.Engine           { return s.engine }
+func (s *Puffscoin) ChainDb() ethdb.Database            { return s.chainDb }
+func (s *Puffscoin) IsListening() bool                  { return true } // Always listening
+func (s *Puffscoin) EthVersion() int                    { return int(s.protocolManager.SubProtocols[0].Version) }
+func (s *Puffscoin) NetVersion() uint64                 { return s.networkID }
+func (s *Puffscoin) Downloader() *downloader.Downloader { return s.protocolManager.downloader }
 
 // Protocols implements node.Service, returning all the currently configured
 // network protocols to start.
-func (s *puffscoin) Protocols() []p2p.Protocol {
+func (s *Puffscoin) Protocols() []p2p.Protocol {
 	if s.lesServer == nil {
 		return s.protocolManager.SubProtocols
 	}
@@ -491,7 +491,7 @@ func (s *puffscoin) Protocols() []p2p.Protocol {
 
 // Start implements node.Service, starting all internal goroutines needed by the
 // puffscoin protocol implementation.
-func (s *puffscoin) Start(srvr *p2p.Server) error {
+func (s *Puffscoin) Start(srvr *p2p.Server) error {
 	// Start the bloom bits servicing goroutines
 	s.startBloomHandlers(params.BloomBitsBlocks)
 
@@ -516,7 +516,7 @@ func (s *puffscoin) Start(srvr *p2p.Server) error {
 
 // Stop implements node.Service, terminating all internal goroutines used by the
 // puffscoin protocol.
-func (s *puffscoin) Stop() error {
+func (s *Puffscoin) Stop() error {
 	s.bloomIndexer.Close()
 	s.blockchain.Stop()
 	s.engine.Close()
