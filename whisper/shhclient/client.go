@@ -19,7 +19,7 @@ package shhclient
 import (
 	"context"
 
-	"github.com/puffscoin/go-puffscoin"
+	puffscoin "github.com/puffscoin/go-puffscoin"
 	"github.com/puffscoin/go-puffscoin/common/hexutil"
 	"github.com/puffscoin/go-puffscoin/rpc"
 	whisper "github.com/puffscoin/go-puffscoin/whisper/whisperv6"
