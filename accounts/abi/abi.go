@@ -18,15 +18,15 @@ package abi
 
 import (
 	"bytes"
-	"encoding/binary"
+	//"encoding/binary"
 	"encoding/json"
 	"fmt"
 	"io"
-	"math/big"
-	"reflect"
-	"strings"
+	//"math/big"
+	//"reflect"
+	//"strings"
 	
-	"github.com/puffscoin/go-puffscoin/common"
+	//"github.com/puffscoin/go-puffscoin/common"
 )
 
 // The ABI holds information about a contract's context and available
