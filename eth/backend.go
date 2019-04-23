@@ -59,8 +59,8 @@ type LesServer interface {
 	SetBloomBitsIndexer(bbIndexer *core.ChainIndexer)
 }
 
-// puffscoin implements the puffscoin full node service.
-type puffscoin struct {
+// Puffscoin implements the puffscoin full node service.
+type Puffscoin struct {
 	config *Config
 
 	// Channel for shutting down the service
