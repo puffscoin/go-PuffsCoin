@@ -386,7 +386,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		if ctx.GlobalString(utils.SyncModeFlag.Name) == "light" {
 			utils.Fatalf("Light blockchain clients do not support mining")
 		}
-		var puffscoin *eth.puffscoin
+		var puffscoin *eth.Puffscoin
 		if err := stack.Service(&puffscoin); err != nil {
 			utils.Fatalf("puffscoin service not running: %v", err)
 		}
