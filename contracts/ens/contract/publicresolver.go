@@ -19,7 +19,7 @@ import (
 var (
 	_ = big.NewInt
 	_ = strings.NewReader
-	_ = ethereum.NotFound
+	_ = puffscoin.NotFound
 	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
@@ -46,29 +46,29 @@ func DeployPublicResolver(auth *bind.TransactOpts, backend bind.ContractBackend,
 	return address, tx, &PublicResolver{PublicResolverCaller: PublicResolverCaller{contract: contract}, PublicResolverTransactor: PublicResolverTransactor{contract: contract}, PublicResolverFilterer: PublicResolverFilterer{contract: contract}}, nil
 }
 
-// PublicResolver is an auto generated Go binding around an Ethereum contract.
+// PublicResolver is an auto generated Go binding around an puffscoin contract.
 type PublicResolver struct {
 	PublicResolverCaller     // Read-only binding to the contract
 	PublicResolverTransactor // Write-only binding to the contract
 	PublicResolverFilterer   // Log filterer for contract events
 }
 
-// PublicResolverCaller is an auto generated read-only Go binding around an Ethereum contract.
+// PublicResolverCaller is an auto generated read-only Go binding around an puffscoin contract.
 type PublicResolverCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// PublicResolverTransactor is an auto generated write-only Go binding around an Ethereum contract.
+// PublicResolverTransactor is an auto generated write-only Go binding around an puffscoin contract.
 type PublicResolverTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// PublicResolverFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+// PublicResolverFilterer is an auto generated log filtering Go binding around an puffscoin contract events.
 type PublicResolverFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// PublicResolverSession is an auto generated Go binding around an Ethereum contract,
+// PublicResolverSession is an auto generated Go binding around an puffscoin contract,
 // with pre-set call and transact options.
 type PublicResolverSession struct {
 	Contract     *PublicResolver   // Generic contract binding to set the session for
@@ -76,31 +76,31 @@ type PublicResolverSession struct {
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// PublicResolverCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// PublicResolverCallerSession is an auto generated read-only Go binding around an puffscoin contract,
 // with pre-set call options.
 type PublicResolverCallerSession struct {
 	Contract *PublicResolverCaller // Generic contract caller binding to set the session for
 	CallOpts bind.CallOpts         // Call options to use throughout this session
 }
 
-// PublicResolverTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// PublicResolverTransactorSession is an auto generated write-only Go binding around an puffscoin contract,
 // with pre-set transact options.
 type PublicResolverTransactorSession struct {
 	Contract     *PublicResolverTransactor // Generic contract transactor binding to set the session for
 	TransactOpts bind.TransactOpts         // Transaction auth options to use throughout this session
 }
 
-// PublicResolverRaw is an auto generated low-level Go binding around an Ethereum contract.
+// PublicResolverRaw is an auto generated low-level Go binding around an puffscoin contract.
 type PublicResolverRaw struct {
 	Contract *PublicResolver // Generic contract binding to access the raw methods on
 }
 
-// PublicResolverCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+// PublicResolverCallerRaw is an auto generated low-level read-only Go binding around an puffscoin contract.
 type PublicResolverCallerRaw struct {
 	Contract *PublicResolverCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// PublicResolverTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+// PublicResolverTransactorRaw is an auto generated low-level write-only Go binding around an puffscoin contract.
 type PublicResolverTransactorRaw struct {
 	Contract *PublicResolverTransactor // Generic write-only contract binding to access the raw methods on
 }
@@ -518,7 +518,7 @@ type PublicResolverABIChangedIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -659,7 +659,7 @@ type PublicResolverAddrChangedIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -792,7 +792,7 @@ type PublicResolverContenthashChangedIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -925,7 +925,7 @@ type PublicResolverNameChangedIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -1058,7 +1058,7 @@ type PublicResolverPubkeyChangedIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -1192,7 +1192,7 @@ type PublicResolverTextChangedIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
