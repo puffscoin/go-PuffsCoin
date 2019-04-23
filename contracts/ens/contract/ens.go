@@ -19,7 +19,7 @@ import (
 var (
 	_ = big.NewInt
 	_ = strings.NewReader
-	_ = ethereum.NotFound
+	_ = puffscoin.NotFound
 	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
@@ -33,7 +33,7 @@ const ENSABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"node\",\"type\":\"by
 // ENSBin is the compiled bytecode used for deploying new contracts.
 const ENSBin = `0x`
 
-// DeployENS deploys a new Ethereum contract, binding an instance of ENS to it.
+// DeployENS deploys a new puffscoin contract, binding an instance of ENS to it.
 func DeployENS(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *ENS, error) {
 	parsed, err := abi.JSON(strings.NewReader(ENSABI))
 	if err != nil {
@@ -500,7 +500,7 @@ type ENSNewResolverIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -633,7 +633,7 @@ type ENSNewTTLIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
@@ -766,7 +766,7 @@ type ENSTransferIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  puffscoin.Subscription // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
