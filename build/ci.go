@@ -70,7 +70,7 @@ var (
 		executablePath("gpuffs"),
 	}
 
-	// Files that end up in the geth-alltools*.zip archive.
+	// Files that end up in the gpuffs-alltools*.zip archive.
 	allToolsArchiveFiles = []string{
 		"COPYING",
 		executablePath("abigen"),
@@ -413,7 +413,7 @@ func doArchive(cmdline []string) {
 		swarm     = "swarm-" + baseswarm + ext
 	)
 	maybeSkipArchive(env)
-	if err := build.WriteArchive(geth, gethArchiveFiles); err != nil {
+	if err := build.WriteArchive(gpuffs, gethArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
 	if err := build.WriteArchive(alltools, allToolsArchiveFiles); err != nil {
@@ -422,7 +422,7 @@ func doArchive(cmdline []string) {
 	if err := build.WriteArchive(swarm, swarmArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
-	for _, archive := range []string{geth, alltools, swarm} {
+	for _, archive := range []string{gpuffs, alltools, swarm} {
 		if err := archiveUpload(archive, *upload, *signer); err != nil {
 			log.Fatal(err)
 		}
@@ -1031,7 +1031,7 @@ func doXgo(cmdline []string) {
 				args = args[:len(args)-1]
 			}
 		}
-		retu
+		return
 	}
 	// Otherwise xxecute the explicit cross compilation
 	path := args[len(args)-1]
