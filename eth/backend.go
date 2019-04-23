@@ -94,7 +94,7 @@ type Puffscoin struct {
 	lock sync.RWMutex // Protects the variadic fields (e.g. gas price and etherbase)
 }
 
-func (s *puffscoin) AddLesServer(ls LesServer) {
+func (s *Puffscoin) AddLesServer(ls LesServer) {
 	s.lesServer = ls
 	ls.SetBloomBitsIndexer(s.bloomIndexer)
 }
