@@ -47,7 +47,7 @@ type PublicEthereumAPI struct {
 }
 
 // NewPublicEthereumAPI creates a new puffscoin protocol API for full nodes.
-func NewPublicEthereumAPI(e *puffscoin) *PublicEthereumAPI {
+func NewPublicEthereumAPI(e *Puffscoin) *PublicEthereumAPI {
 	return &PublicEthereumAPI{e}
 }
 
@@ -78,11 +78,11 @@ func (api *PublicEthereumAPI) ChainId() hexutil.Uint64 {
 // PublicMinerAPI provides an API to control the miner.
 // It offers only methods that operate on data that pose no security risk when it is publicly accessible.
 type PublicMinerAPI struct {
-	e *puffscoin
+	e *Puffscoin
 }
 
 // NewPublicMinerAPI create a new PublicMinerAPI instance.
-func NewPublicMinerAPI(e *puffscoin) *PublicMinerAPI {
+func NewPublicMinerAPI(e *Puffscoin) *PublicMinerAPI {
 	return &PublicMinerAPI{e}
 }
 
@@ -94,11 +94,11 @@ func (api *PublicMinerAPI) Mining() bool {
 // PrivateMinerAPI provides private RPC methods to control the miner.
 // These methods can be abused by external users and must be considered insecure for use by untrusted users.
 type PrivateMinerAPI struct {
-	e *puffscoin
+	e *Puffscoin
 }
 
 // NewPrivateMinerAPI create a new RPC service which controls the miner of this node.
-func NewPrivateMinerAPI(e *puffscoin) *PrivateMinerAPI {
+func NewPrivateMinerAPI(e *Puffscoin) *PrivateMinerAPI {
 	return &PrivateMinerAPI{e: e}
 }
 
@@ -154,15 +154,15 @@ func (api *PrivateMinerAPI) GetHashrate() uint64 {
 	return api.e.miner.HashRate()
 }
 
-// PrivateAdminAPI is the collection of Ethereum full node-related APIs
+// PrivateAdminAPI is the collection of PUFFScoin full node-related APIs
 // exposed over the private admin endpoint.
 type PrivateAdminAPI struct {
-	eth *puffscoin
+	eth *Puffscoin
 }
 
 // NewPrivateAdminAPI creates a new API definition for the full node private
-// admin methods of the Ethereum service.
-func NewPrivateAdminAPI(eth *puffscoin) *PrivateAdminAPI {
+// admin methods of the PUFFScoin service.
+func NewPrivateAdminAPI(eth *Puffscoin) *PrivateAdminAPI {
 	return &PrivateAdminAPI{eth: eth}
 }
 
@@ -250,12 +250,12 @@ func (api *PrivateAdminAPI) ImportChain(file string) (bool, error) {
 // PublicDebugAPI is the collection of Ethereum full node APIs exposed
 // over the public debugging endpoint.
 type PublicDebugAPI struct {
-	eth *puffscoin
+	eth *Puffscoin
 }
 
 // NewPublicDebugAPI creates a new API definition for the full node-
 // related public debug methods of the Ethereum service.
-func NewPublicDebugAPI(eth *puffscoin) *PublicDebugAPI {
+func NewPublicDebugAPI(eth *Puffscoin) *PublicDebugAPI {
 	return &PublicDebugAPI{eth: eth}
 }
 
@@ -287,12 +287,12 @@ func (api *PublicDebugAPI) DumpBlock(blockNr rpc.BlockNumber) (state.Dump, error
 // PrivateDebugAPI is the collection of puffscoin full node APIs exposed over
 // the private debugging endpoint.
 type PrivateDebugAPI struct {
-	eth *puffscoin
+	eth *Puffscoin
 }
 
 // NewPrivateDebugAPI creates a new API definition for the full node-related
 // private debug methods of the puffscoin service.
-func NewPrivateDebugAPI(eth *puffscoin) *PrivateDebugAPI {
+func NewPrivateDebugAPI(eth *Puffscoin) *PrivateDebugAPI {
 	return &PrivateDebugAPI{eth: eth}
 }
 
