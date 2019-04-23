@@ -19,7 +19,7 @@ import (
 var (
 	_ = big.NewInt
 	_ = strings.NewReader
-	_ = ethereum.NotFound
+	_ = puffscoin.NotFound
 	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
