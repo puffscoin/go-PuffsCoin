@@ -19,7 +19,7 @@ import (
 var (
 	_ = big.NewInt
 	_ = strings.NewReader
-	_ = ethereum.NotFound
+	_ = puffscoin.NotFound
 	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
@@ -46,29 +46,29 @@ func DeployFIFSRegistrar(auth *bind.TransactOpts, backend bind.ContractBackend, 
 	return address, tx, &FIFSRegistrar{FIFSRegistrarCaller: FIFSRegistrarCaller{contract: contract}, FIFSRegistrarTransactor: FIFSRegistrarTransactor{contract: contract}, FIFSRegistrarFilterer: FIFSRegistrarFilterer{contract: contract}}, nil
 }
 
-// FIFSRegistrar is an auto generated Go binding around an Ethereum contract.
+// FIFSRegistrar is an auto generated Go binding around a PUFFScoin contract.
 type FIFSRegistrar struct {
 	FIFSRegistrarCaller     // Read-only binding to the contract
 	FIFSRegistrarTransactor // Write-only binding to the contract
 	FIFSRegistrarFilterer   // Log filterer for contract events
 }
 
-// FIFSRegistrarCaller is an auto generated read-only Go binding around an Ethereum contract.
+// FIFSRegistrarCaller is an auto generated read-only Go binding around a PUFFScoin contract.
 type FIFSRegistrarCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// FIFSRegistrarTransactor is an auto generated write-only Go binding around an Ethereum contract.
+// FIFSRegistrarTransactor is an auto generated write-only Go binding around a PUFFScoin contract.
 type FIFSRegistrarTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// FIFSRegistrarFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+// FIFSRegistrarFilterer is an auto generated log filtering Go binding around a PUFFScoin contract events.
 type FIFSRegistrarFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// FIFSRegistrarSession is an auto generated Go binding around an Ethereum contract,
+// FIFSRegistrarSession is an auto generated Go binding around a PUFFScoin contract,
 // with pre-set call and transact options.
 type FIFSRegistrarSession struct {
 	Contract     *FIFSRegistrar    // Generic contract binding to set the session for
@@ -76,31 +76,31 @@ type FIFSRegistrarSession struct {
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// FIFSRegistrarCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// FIFSRegistrarCallerSession is an auto generated read-only Go binding around a PUFFScoin contract,
 // with pre-set call options.
 type FIFSRegistrarCallerSession struct {
 	Contract *FIFSRegistrarCaller // Generic contract caller binding to set the session for
 	CallOpts bind.CallOpts        // Call options to use throughout this session
 }
 
-// FIFSRegistrarTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// FIFSRegistrarTransactorSession is an auto generated write-only Go binding around a PUFFScoin contract,
 // with pre-set transact options.
 type FIFSRegistrarTransactorSession struct {
 	Contract     *FIFSRegistrarTransactor // Generic contract transactor binding to set the session for
 	TransactOpts bind.TransactOpts        // Transaction auth options to use throughout this session
 }
 
-// FIFSRegistrarRaw is an auto generated low-level Go binding around an Ethereum contract.
+// FIFSRegistrarRaw is an auto generated low-level Go binding around a PUFFScoin contract.
 type FIFSRegistrarRaw struct {
 	Contract *FIFSRegistrar // Generic contract binding to access the raw methods on
 }
 
-// FIFSRegistrarCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+// FIFSRegistrarCallerRaw is an auto generated low-level read-only Go binding around a PUFFScoin contract.
 type FIFSRegistrarCallerRaw struct {
 	Contract *FIFSRegistrarCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// FIFSRegistrarTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+// FIFSRegistrarTransactorRaw is an auto generated low-level write-only Go binding around a PUFFScoin contract.
 type FIFSRegistrarTransactorRaw struct {
 	Contract *FIFSRegistrarTransactor // Generic write-only contract binding to access the raw methods on
 }
