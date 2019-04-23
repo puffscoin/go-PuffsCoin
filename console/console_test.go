@@ -75,7 +75,7 @@ func (p *hookedPrompter) SetWordCompleter(completer WordCompleter) {}
 type tester struct {
 	workspace string
 	stack     *node.Node
-	ethereum  *eth.Ethereum
+	puffscoin *eth.Puffscoin
 	console   *Console
 	input     *hookedPrompter
 	output    *bytes.Buffer
@@ -131,8 +131,8 @@ func newTester(t *testing.T, confOverride func(*eth.Config)) *tester {
 		t.Fatalf("failed to create JavaScript console: %v", err)
 	}
 	// Create the final tester and return
-	var ethereum *eth.Ethereum
-	stack.Service(&ethereum)
+	var puffscoin *eth.Puffscoin
+	stack.Service(&puffscoin)
 
 	return &tester{
 		workspace: workspace,
