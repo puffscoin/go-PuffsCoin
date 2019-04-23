@@ -56,7 +56,7 @@ type LesServer struct {
 	priorityClientPool *priorityClientPool
 }
 
-func NewLesServer(eth *eth.puffscoin, config *eth.Config) (*LesServer, error) {
+func NewLesServer(eth *eth.Puffscoin, config *eth.Config) (*LesServer, error) {
 	quitSync := make(chan struct{})
 	pm, err := NewProtocolManager(
 		eth.BlockChain().Config(),
