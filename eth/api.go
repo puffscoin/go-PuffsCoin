@@ -43,7 +43,7 @@ import (
 // PublicEthereumAPI provides an API to access puffscoin full node-related
 // information.
 type PublicEthereumAPI struct {
-	e *puffscoin
+	e *Puffscoin
 }
 
 // NewPublicEthereumAPI creates a new puffscoin protocol API for full nodes.
