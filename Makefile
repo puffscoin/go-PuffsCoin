@@ -12,7 +12,7 @@ GOBIN = $(shell pwd)/build/bin
 GO ?= latest
 
 gpuffs:
-	build/env.sh go run build/ci.go install ./cmd/geth
+	build/env.sh go run build/ci.go install ./cmd/gpuffs
 	@echo "Done building."
 	@echo "Run \"$(GOBIN)/gpuffs\" to launch gpuffs."
 
