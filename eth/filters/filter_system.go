@@ -78,7 +78,7 @@ type subscription struct {
 	id        rpc.ID
 	typ       Type
 	created   time.Time
-	logsCrit  ethereum.FilterQuery
+	logsCrit  puffscoin.FilterQuery
 	logs      chan []*types.Log
 	hashes    chan []common.Hash
 	headers   chan *types.Header
