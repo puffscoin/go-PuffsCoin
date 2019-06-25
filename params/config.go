@@ -25,7 +25,7 @@ import (
 
 // Genesis hashes to enforce below configs on.
 var (
-	MainnetGenesisHash = common.HexToHash("0xca0e73db7868c742ac28366cde8256be8e5574a239d185d4360a62bc632ee67b")
+	MainnetGenesisHash = common.HexToHash("0x33ad4fd1a83c929d538b5ee61c2f566fd6e09e354cd062fc636f2779d600be8d")
 	TestnetGenesisHash = common.HexToHash("0x0")
 	RinkebyGenesisHash = common.HexToHash("0x0")
 	GoerliGenesisHash  = common.HexToHash("0x0")
@@ -48,7 +48,7 @@ var (
 		DAOForkBlock:        big.NewInt(1),
 		DAOForkSupport:      true,
 		EIP150Block:         big.NewInt(1),
-		EIP150Hash:          common.HexToHash("0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0"),
+		EIP150Hash:          common.HexToHash("0x0000000000000000000000000000000000000000000000000000000000000000"),
 		EIP155Block:         big.NewInt(1),
 		EIP158Block:         big.NewInt(1),
 		ByzantiumBlock:      big.NewInt(2),
